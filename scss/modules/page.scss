@@ -1,0 +1,73 @@
+.page {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transition: transform $transition;
+  transform: rotateY(0);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  cursor: grab;
+  user-select: none;
+  pointer-events: none;
+
+  &.flipped {
+    transform: rotateY(-180deg);
+  }
+
+  &.active {
+    pointer-events: all;
+    transform: rotateY(0) scale(1.002);
+
+    &.flipped {
+      transform: rotateY(-180deg) scale(1.002);
+    }
+  }
+
+  &.disable-transition {
+    transition: none;
+    cursor: grabbing;
+  }
+
+  .page__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    backface-visibility: hidden;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    &.page__front {
+      transform: translate3d(0, 0, 0);
+
+      /*
+      &:after {
+        content: '';
+        position: absolute;
+        width: 15%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to left, rgba(#888, 0), rgba(#888, 0.01));
+      }
+      */
+    }
+
+    &.page__back {
+      transform: rotateY(180deg) translate3d(0, 0, 0);
+    }
+  }
+}
