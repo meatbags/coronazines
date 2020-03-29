@@ -1,11 +1,12 @@
 // colour
 $black: #2c2c2f;
-$white: #ececef;
+$white: #fcfcff;
+$background: #ececef;
 $colour: $black;
-$background: $white;
 
-// size
+// sizing
 $space: 8px;
+$navHeight: 40px;
 
 // style
 $border: 1px solid $colour;
@@ -18,6 +19,8 @@ $mobile: 670px;
 
 // index
 $indexWrapper: 1;
+$indexNav: 100;
 
 // animation
 $transition: 0.5s;
+$transitionFast: 0.3s;

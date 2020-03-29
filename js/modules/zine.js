@@ -7,9 +7,16 @@ import Page from './page';
 
 class Zine {
   constructor(params) {
+    this.data = params.data;
+    this.domTarget = params.domTarget;
+    console.log(this.data);
+
+    // init
     this.index = 0;
+    this.pageContent = this.data.zine_content.split(';').map(src => {
+      return src === '' ? '' : `<img src='${src}'>`;
+    });
     this.pages = [];
-    this.pageContent = params.pages || ['', '', ''];
     this.width = 0;
     this.height = 0;
     this.render();
@@ -17,6 +24,7 @@ class Zine {
 
   show() {
     this.el.classList.add('active');
+    this.resize();
   }
 
   hide() {
@@ -59,7 +67,7 @@ class Zine {
     if (p == null || p.isFull()) {
       const p = new Page({
         root: this,
-        domTarget: this.el.querySelector('.zine__inner'),
+        domTarget: this.el.querySelector('.zine__page-list'),
         index: index,
       });
       p.setFront(content);
@@ -97,6 +105,8 @@ class Zine {
         childNodes: [{
           class: 'zine__inner',
           childNodes: [{
+            class: 'zine__page-list',
+          },{
             class: 'zine__controls',
             childNodes: [{
               class: 'zine__prev',
@@ -124,7 +134,7 @@ class Zine {
         this.addPage(content);
       });
 
-      document.querySelector('#zine-target').appendChild(this.el);
+      this.domTarget.appendChild(this.el);
       this.goToIndex(this.index);
 
       // resize

@@ -1,29 +1,50 @@
+<?php include_once('inc/module-zine-handler.php'); ?>
+<?php $zines = ZineHandler::listZines(); ?>
 <?php include('header.php'); ?>
+<?php include('nav.php'); ?>
+
+<div class='loading-screen'></div>
 
 <div class='wrapper'>
   <div class='wrapper__inner'>
-    <div class='builder'>
-      <div class='builder__pages'>
-        <div class='page'></div>
-        <div class='page'></div>
-        <div class='page'></div>
+    <!-- HOME -->
+    <div id='view-home' class='view active'>
+      <div class='zine-list'>
+        <?php foreach ($zines as $zine):
+          // first page
+          $img = explode(';', $zine['zine_content'])[0];
+          ?>
+          <div class='item' data-zine='<?php echo $zine['zine_ref']; ?>'>
+            <div class='item__inner'>
+              <div class='item__background'>
+                <?php if (!empty($img)): ?>
+                  <img src='<?php echo $img; ?>'>
+                <?php else: ?>
+                  <div class='placeholder'></div>
+                <?php endif; ?>
+              </div>
+              <div class='item__title'><?php echo $zine['zine_title']; ?></div>
+            </div>
+          </div>
+        <?php endforeach; ?>
       </div>
     </div>
-    <div id='zine-target' class='viewer'>
-      <!-- ZINE LOADS HERE -->
+
+    <!-- VIEWER -->
+    <div id='view-viewer' class='view'>
+      <div id='zine-target' class='viewer'></div>
+    </div>
+
+    <!-- ZINE CREATOR -->
+    <div id='view-create' class='view'>
+      {{ CREATOR HERE }}
+    </div>
+
+    <!-- ABOUT -->
+    <div id='view-about' class='view'>
+      {{ ABOUT }}
     </div>
   </div>
-</div>
-
-<div id='data-target' style='display:none;' data-title='coronazine'>
-  <div class='page'><img src='./img/example/page_00.jpg'></div>
-  <div class='page'><img src='./img/example/page_01.jpg'></div>
-  <div class='page'><img src='./img/example/page_02.jpg'></div>
-  <div class='page'><img src='./img/example/page_03.jpg'></div>
-  <div class='page'><img src='./img/example/page_04.jpg'></div>
-  <div class='page'><img src='./img/example/page_05.jpg'></div>
-  <div class='page'><img src='./img/example/page_06.jpg'></div>
-  <div class='page'><img src='./img/example/page_07.jpg'></div>
 </div>
 
 <?php include('footer.php'); ?>

@@ -61,11 +61,13 @@ class Page {
       this.flipped = false;
     }
 
-    // set active pages
-    if (this.index === index || this.index === index - 1) {
+    // set active/ visible pages
+    this.el.classList.remove('active');
+    this.el.classList.remove('visible');
+    if (this.index >= index - 1 && this.index <= index) {
       this.el.classList.add('active');
-    } else {
-      this.el.classList.remove('active');
+    } else if (this.index >= index - 2 && this.index <= index + 1) {
+      this.el.classList.add('visible');
     }
   }
 
@@ -78,7 +80,7 @@ class Page {
   }
 
   setRotation(deg) {
-    this.el.style.transform = `rotateY(${deg}deg) scale(1.002)`;
+    this.el.style.transform = `rotateY(${deg}deg) scale(1.002) translate(0, 0)`;
   }
 
   mouseDown(evt) {
@@ -88,6 +90,7 @@ class Page {
     this.mouse.origin.y = this.isMobile ? evt.touches[0].clientY : evt.clientY;
     this.mouse.delta.x = 0;
     this.mouse.delta.y = 0;
+    this.el.style.zIndex = this.root.pages.length + 1;
     this.el.classList.add('disable-transition');
   }
 

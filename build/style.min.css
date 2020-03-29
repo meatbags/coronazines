@@ -138,7 +138,7 @@ html, body {
   overflow: hidden; }
 
 body {
-  font-family: "Karla", Arial, sans-serif;
+  font-family: "Playfair Display", serif;
   font-size: 14px;
   line-height: 1;
   letter-spacing: 1;
@@ -170,6 +170,25 @@ a {
   width: 8px;
   height: 8px; }
 
+.view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-top: 56px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-100%, 0); }
+  .view.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(0, 0); }
+
 .viewer {
   width: 100%;
   height: 100%;
@@ -177,26 +196,117 @@ a {
   justify-content: center;
   align-items: center; }
 
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 100; }
+  .nav .nav__inner {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; }
+    .nav .nav__inner .nav__pane {
+      width: 50%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center; }
+      .nav .nav__inner .nav__pane .nav__item {
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        cursor: pointer; }
+        .nav .nav__inner .nav__pane .nav__item:hover {
+          text-decoration: underline; }
+      .nav .nav__inner .nav__pane:last-child {
+        justify-content: flex-end; }
+
+.zine-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 40px; }
+  .zine-list .item {
+    width: 25%;
+    height: 350px;
+    display: flex;
+    cursor: pointer; }
+    .zine-list .item .item__inner {
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column; }
+      .zine-list .item .item__inner .item__background {
+        padding-bottom: 0;
+        width: 100%;
+        height: 87.5%;
+        display: flex;
+        flex-shrink: 1;
+        justify-content: center;
+        align-items: center; }
+        .zine-list .item .item__inner .item__background img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain; }
+        .zine-list .item .item__inner .item__background .placeholder {
+          background: #fcfcff; }
+      .zine-list .item .item__inner .item__title {
+        width: 100%;
+        height: 12.5%;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+    .zine-list .item:hover .item__inner .item__title {
+      text-decoration: underline; }
+  @media screen and (max-width: 1024px) {
+    .zine-list .item {
+      width: 33.333333%; } }
+  @media screen and (max-width: 768px) {
+    .zine-list .item {
+      width: 50%; } }
+
 .zine {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   user-select: none;
   pointer-events: none;
-  opacity: 0; }
+  opacity: 0;
+  display: none; }
   .zine.active {
     pointer-events: all;
-    opacity: 1; }
+    opacity: 1;
+    display: block; }
   .zine .zine__inner {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 35.35vh;
     height: 50vh;
-    perspective: 1000px;
-    transform-style: preserve-3d;
     transform: translate(-50%, -50%);
     transition: transform 0.5s; }
+    .zine .zine__inner .zine__page-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      perspective: 1000px;
+      transform-style: preserve-3d; }
     .zine .zine__inner .zine__controls {
       position: absolute;
       top: 100%;
@@ -241,53 +351,53 @@ a {
   left: 50%;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s;
-  transform: rotateY(0);
-  transform-origin: left center;
+  transform-origin: 0% 50%;
   transform-style: preserve-3d;
   cursor: grab;
   user-select: none;
-  pointer-events: none; }
-  .page.flipped {
-    transform: rotateY(-180deg); }
-  .page.active {
-    pointer-events: all;
-    transform: rotateY(0) scale(1.002); }
-    .page.active.flipped {
-      transform: rotateY(-180deg) scale(1.002); }
-  .page.disable-transition {
-    transition: none;
-    cursor: grabbing; }
+  pointer-events: none;
+  transition: transform 0.5s;
+  transform: rotateY(0) scale(0.99) translate(0, 0); }
   .page .page__inner {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
     backface-visibility: hidden;
-    overflow: hidden; }
+    transform-style: preserve-3d;
+    overflow: hidden;
+    background: #fcfcff;
+    display: flex; }
     .page .page__inner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      pointer-events: none; }
-    .page .page__inner.page__front {
-      transform: translate3d(0, 0, 0);
-      /*
-      &:after {
-        content: '';
-        position: absolute;
-        width: 15%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: linear-gradient(to left, rgba(#888, 0), rgba(#888, 0.01));
-      }
-      */ }
+      pointer-events: none;
+      backface-visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s; }
+    .page .page__inner.page__front:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      left: 0; }
     .page .page__inner.page__back {
-      transform: rotateY(180deg) translate3d(0, 0, 0); }
+      transform: rotateY(180deg); }
+  .page.flipped {
+    transform: rotateY(-180deg) scale(0.99) translate(0, 0); }
+  .page.disable-transition {
+    transition: none;
+    cursor: grabbing; }
+  .page.visible .page__inner img {
+    opacity: 0.75; }
+  .page.active {
+    pointer-events: all;
+    transform: rotateY(0) scale(1.002) translate(0, 0); }
+    .page.active.flipped {
+      transform: rotateY(-180deg) scale(1.002) translate(0, 0); }
+    .page.active .page__inner img {
+      opacity: 1; }
 

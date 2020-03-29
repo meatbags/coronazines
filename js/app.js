@@ -1,13 +1,13 @@
 /** App */
 
 import Navigation from './modules/navigation';
-import ZineManager from './modules/zine_manager';
+import ZineHandler from './modules/zine_handler';
 
 class App {
   constructor() {
     this.modules = {
       navigation: new Navigation(),
-      zineManager: new ZineManager(),
+      zineHandler: new ZineHandler(),
     };
 
     // bind

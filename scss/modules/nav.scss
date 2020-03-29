@@ -1,0 +1,36 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $navHeight;
+  z-index: $indexNav;
+
+  .nav__inner {
+    @include padding(2, 1);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    .nav__pane {
+      width: 50%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .nav__item {
+        @include padding(1, 0);
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &:last-child {
+        justify-content: flex-end;
+      }
+    }
+  }
+}
