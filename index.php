@@ -8,13 +8,15 @@
 <div class='wrapper'>
   <div class='wrapper__inner'>
     <!-- HOME -->
-    <div id='view-home' class='view active'>
+    <div id='view-home' class='view'>
       <div class='zine-list'>
         <?php foreach ($zines as $zine):
           // first page
-          $img = explode(';', $zine['zine_content'])[0];
+          $ref = strip_tags($zine['zine_ref']);
+          $title = htmlspecialchars($zine['zine_title']);
+          $img = strip_tags(explode(';', $zine['zine_content'])[0]);
           ?>
-          <div class='item' data-zine='<?php echo $zine['zine_ref']; ?>'>
+          <div class='item' data-zine='<?php echo $ref; ?>'>
             <div class='item__inner'>
               <div class='item__background'>
                 <?php if (!empty($img)): ?>
@@ -23,7 +25,7 @@
                   <div class='placeholder'></div>
                 <?php endif; ?>
               </div>
-              <div class='item__title'><?php echo $zine['zine_title']; ?></div>
+              <div class='item__title'><?php echo $title; ?></div>
             </div>
           </div>
         <?php endforeach; ?>
@@ -36,8 +38,17 @@
     </div>
 
     <!-- ZINE CREATOR -->
-    <div id='view-create' class='view'>
-      {{ CREATOR HERE }}
+    <div id='view-create' class='view active'>
+      <div class='view__side-bar'>
+        <div class=''></div>
+        <div class='pages'>
+          ......!
+        </div>
+        <div class=''></div>
+      </div>
+      <div class='view__workspace'>
+        <div class='viewer'></div>
+      </div>
     </div>
 
     <!-- ABOUT -->

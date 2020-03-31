@@ -401,3 +401,40 @@ a {
     .page.active .page__inner img {
       opacity: 1; }
 
+.login-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .login-page form {
+    display: flex;
+    flex-direction: column;
+    width: 260px; }
+    .login-page form .row {
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      width: 100%;
+      display: flex;
+      align-items: center; }
+      .login-page form .row label {
+        width: 40%; }
+      .login-page form .row input {
+        width: 60%;
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        outline: none !important;
+        background: #fcfcff;
+        border: 1px solid #2c2c2f; }
+      .login-page form .row input[type="submit"] {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        width: 100%;
+        cursor: pointer; }
+
