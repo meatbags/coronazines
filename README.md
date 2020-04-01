@@ -1,1 +1,1 @@
-# Corona Zines
+# Virulent Zines
