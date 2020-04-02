@@ -14,16 +14,15 @@
           // first page
           $ref = strip_tags($zine['zine_ref']);
           $title = htmlspecialchars($zine['zine_title']);
-          $img = strip_tags(explode(';', $zine['zine_content'])[0]);
+          $pages = explode(';', $zine['zine_content']);
+          $p1 = strip_tags($pages[0]);
+          $p2 = count($pages) > 0 ? strip_tags($pages[1]) : NULL;
           ?>
           <div class='item' data-zine='<?php echo $ref; ?>'>
             <div class='item__inner'>
               <div class='item__background'>
-                <?php if (!empty($img)): ?>
-                  <img src='<?php echo $img; ?>'>
-                <?php else: ?>
-                  <div class='placeholder'></div>
-                <?php endif; ?>
+                <?php echo !empty($p1) ? "<img src='" . $p1 . "'>" : "<div class='placeholder'></div>"; ?>
+                <?php echo !empty($p2) ? "<img src='" . $p2 . "'>" : "<div class='placeholder'></div>"; ?>
               </div>
               <div class='item__title'><?php echo $title; ?></div>
             </div>

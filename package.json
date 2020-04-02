@@ -1,5 +1,5 @@
 {
-  "name": "ghosts",
+  "name": "virulent-zines",
   "version": "1.0.0",
   "description": "",
   "main": "js/main.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meatbags/naomi.git"
+    "url": "git+https://github.com/meatbags/virulent-zines.git"
   },
   "author": "meatbags",
   "license": "ISC",

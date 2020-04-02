@@ -1,3 +1,8 @@
+$pageTransform: translate3d(-1px, 0, 0) rotateY(0) scale(1.0);
+$pageTransformFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
+$pageTransformActive: translate3d(-2px, 0, 1px) rotateY(0) scale(1.0);
+$pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
+
 .page {
   position: absolute;
   top: 0;
@@ -10,7 +15,7 @@
   user-select: none;
   pointer-events: none;
   transition: transform $transition;
-  transform: rotateY(0) scale(0.99) translate(0, 0);
+  transform: $pageTransform;
 
   .page__inner {
     position: absolute;
@@ -51,7 +56,7 @@
   }
 
   &.flipped {
-    transform: rotateY(-180deg) scale(0.99) translate(0, 0);
+    transform: $pageTransformFlipped;
   }
 
   &.disable-transition {
@@ -69,10 +74,10 @@
 
   &.active {
     pointer-events: all;
-    transform: rotateY(0) scale(1.002) translate(0, 0);
+    transform: $pageTransformActive;
 
     &.flipped {
-      transform: rotateY(-180deg) scale(1.002) translate(0, 0);
+      transform: $pageTransformActiveFlipped;
     }
 
     .page__inner {

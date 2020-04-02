@@ -80,7 +80,11 @@ class Page {
   }
 
   setRotation(deg) {
-    this.el.style.transform = `rotateY(${deg}deg) scale(1.002) translate(0, 0)`;
+    if (this.flipped) {
+      this.el.style.transform = `translate3d(0, 0, 0) rotateY(${deg}deg) scale(1.0)`;
+    } else {
+      this.el.style.transform = `translate3d(-1px, 0, 0) rotateY(${deg}deg) scale(1.0)`;
+    }
   }
 
   mouseDown(evt) {
