@@ -1,12 +1,12 @@
 .alert {
-  @include padding(2, 1);
+  @include padding(0, 1);
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: $indexAlert;
   opacity: 0;
   transform: translate(0, $space);
-  transition: $transition;
+  transition: transform $transition, opacity $transition;
 
   &.active {
     opacity: 1;

@@ -164,7 +164,9 @@ a {
   .wrapper .wrapper__inner {
     width: 100%;
     height: 100%;
-    display: flex; }
+    display: flex;
+    justify-content: center;
+    align-items: center; }
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -430,40 +432,23 @@ a {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .login-page form {
-    display: flex;
-    flex-direction: column;
-    width: 260px; }
-    .login-page form .row {
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      width: 100%;
-      display: flex;
-      align-items: center; }
-      .login-page form .row label {
-        width: 40%; }
-      .login-page form .row input {
-        width: 60%;
-        padding-left: 4px;
-        padding-right: 4px;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        outline: none !important;
-        background: #fcfcff;
-        border: 1px solid #2c2c2f; }
-      .login-page form .row input[type="submit"] {
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        width: 100%;
-        cursor: pointer; }
+  .login-page .login-page__pane {
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px; }
+    .login-page .login-page__pane:first-child {
+      border-right: 1px solid #2c2c2f; }
+  @media screen and (max-width: 768px) {
+    .login-page {
+      flex-direction: column; }
+      .login-page .login-page__pane:first-child {
+        border-right: none;
+        border-bottom: 1px solid #2c2c2f; } }
 
 .alert {
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: 0px;
+  padding-right: 0px;
   padding-top: 8px;
   padding-bottom: 8px;
   position: fixed;
@@ -472,10 +457,49 @@ a {
   z-index: 200;
   opacity: 0;
   transform: translate(0, 8px);
-  transition: 0.5s; }
+  transition: transform 0.5s, opacity 0.5s; }
   .alert.active {
     opacity: 1;
     transform: translate(0, 0); }
   .alert.alert--error {
     color: #ff2c2c; }
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; }
+  form .row {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 100%;
+    display: flex; }
+    form .row label {
+      width: 50%; }
+    form .row input, form .row textarea {
+      padding-left: 2px;
+      padding-right: 2px;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      width: 50%;
+      border: 1px solid rgba(44, 44, 47, 0.25);
+      outline: none !important;
+      background: #fcfcff; }
+    form .row textarea {
+      width: 50%;
+      resize: vertical; }
+  form input[type="submit"] {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 100%;
+    border: 1px solid rgba(44, 44, 47, 0.25);
+    outline: none !important;
+    background: #fcfcff; }
 
