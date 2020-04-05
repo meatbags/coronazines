@@ -2,12 +2,14 @@
 
 import Navigation from './modules/navigation';
 import ZineHandler from './modules/zine_handler';
+import FormHandler from './modules/form_handler';
 
 class App {
   constructor() {
     this.modules = {
       navigation: new Navigation(),
       zineHandler: new ZineHandler(),
+      formHandler: new FormHandler(),
     };
 
     // bind
