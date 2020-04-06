@@ -4,7 +4,7 @@ import CreateElement from '../util/create_element';
 import Clamp from '../util/clamp';
 import IsMobileDevice from '../util/is_mobile_device';
 
-class Page {
+class ZinePage {
   constructor(params) {
     this.root = params.root;
     this.index = params.index;
@@ -25,13 +25,13 @@ class Page {
   }
 
   setFront(html) {
-    this.front = this.front == null ? this.el.querySelector('.page__front') : this.front;
+    this.front = this.front == null ? this.el.querySelector('.zine-page__front') : this.front;
     this.front.innerHTML = html;
     this.full = this.front && this.back;
   }
 
   setBack(html) {
-    this.back = this.back == null ? this.el.querySelector('.page__back') : this.back;
+    this.back = this.back == null ? this.el.querySelector('.zine-page__back') : this.back;
     this.back.innerHTML = html;
     this.full = this.front && this.back;
   }
@@ -144,11 +144,11 @@ class Page {
   render() {
     if (!this.el) {
       this.el = CreateElement({
-        class: 'page',
+        class: 'zine-page',
         dataset: {index: this.index},
         childNodes: [
-          { class: 'page__inner page__front' },
-          { class: 'page__inner page__back' }
+          { class: 'zine-page__inner zine-page__front' },
+          { class: 'zine-page__inner zine-page__back' }
         ]
       });
       this.domTarget.appendChild(this.el);
@@ -161,4 +161,4 @@ class Page {
   }
 }
 
-export default Page;
+export default ZinePage;

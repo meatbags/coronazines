@@ -1,9 +1,10 @@
 .zine-list {
+  padding-top: $navHeight * 1.5;
   width: 100%;
-  height: 100vh;
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
-  padding-top: $navHeight;
   overflow-y: scroll;
 
   .item {
@@ -45,7 +46,7 @@
             top: 50%;
             left: 50%;
             transform-origin: left center;
-            transform: translate(-50%, -50%) rotateY(0);
+            transform: translate3d(-50%, -50%, 0) rotateY(0);
             transition: transform $transitionFast;
 
             &:nth-child(1) {
@@ -60,11 +61,11 @@
           &:hover {
             img, .placeholder {
               &:nth-child(1) {
-                transform: translate(-50%, -50%) rotateY(-25deg);
+                transform: translate3d(-50%, -50%, 0) rotateY(-25deg);
               }
 
               &:nth-child(2) {
-                transform: translate(-50%, -50%) rotateY(0);
+                transform: translate3d(-50%, -50%, 0) rotateY(0);
               }
             }
           }

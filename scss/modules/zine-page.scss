@@ -1,9 +1,9 @@
 $pageTransform: translate3d(-1px, 0, 0) rotateY(0) scale(0.995);
 $pageTransformFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(0.995);
-$pageTransformActive: translate3d(-2px, 0, 1px) rotateY(0) scale(1.0);
+$pageTransformActive: translate3d(-2px, 0, 0) rotateY(0) scale(1.0);
 $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
 
-.page {
+.zine-page {
   position: absolute;
   top: 0;
   left: 50%;
@@ -17,7 +17,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
   transition: transform $transition;
   transform: $pageTransform;
 
-  .page__inner {
+  .zine-page__inner {
     position: absolute;
     top: 0;
     left: 0;
@@ -39,7 +39,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
       transition: opacity $transitionFast;
     }
 
-    &.page__front {
+    &.zine-page__front {
       &:after {
         content: '';
         position: absolute;
@@ -50,7 +50,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
       }
     }
 
-    &.page__back {
+    &.zine-page__back {
       transform: rotateY(180deg);
     }
   }
@@ -65,7 +65,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
   }
 
   &.visible {
-    .page__inner {
+    .zine-page__inner {
       img {
         //opacity: 0.75;
       }
@@ -80,7 +80,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
       transform: $pageTransformActiveFlipped;
     }
 
-    .page__inner {
+    .zine-page__inner {
       img {
         opacity: 1;
       }

@@ -3,7 +3,7 @@
 import CreateElement from '../util/create_element';
 import GetContainedRect from '../util/get_contained_rect';
 import Clamp from '../util/clamp';
-import Page from './page';
+import ZinePage from './zine_page';
 
 class Zine {
   constructor(params) {
@@ -71,7 +71,7 @@ class Zine {
 
     // create new page
     if (p == null || p.isFull()) {
-      const p = new Page({
+      const p = new ZinePage({
         root: this,
         domTarget: this.el.querySelector('.zine__page-list'),
         index: index,
