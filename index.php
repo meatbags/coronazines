@@ -13,18 +13,20 @@
         $p1 = strip_tags($pages[0]);
         $p2 = count($pages) > 0 ? strip_tags($pages[1]) : NULL;
         ?>
-        <div class='item' data-zine='<?php echo $ref; ?>'>
+        <div class='item'>
           <div class='item__inner'>
-            <div class='item__background'>
-              <?php echo !empty($p1) ? "<img src='" . $p1 . "'>" : "<div class='placeholder'></div>"; ?>
-              <?php echo !empty($p2) ? "<img src='" . $p2 . "'>" : "<div class='placeholder'></div>"; ?>
-            </div>
-            <div class='item__title'>
-              <div class='text'>
-                <?php echo $title; ?>
-                <div class='underline'></div>
+            <a href='page-zine.php?z=<?php echo $ref; ?>'>
+              <div class='item__background'>
+                <?php echo !empty($p1) ? "<img src='" . $p1 . "'>" : "<div class='placeholder'></div>"; ?>
+                <?php echo !empty($p2) ? "<img src='" . $p2 . "'>" : "<div class='placeholder'></div>"; ?>
               </div>
-            </div>
+              <div class='item__title'>
+                <div class='text'>
+                  <?php echo $title; ?>
+                  <div class='underline'></div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       <?php endforeach; ?>

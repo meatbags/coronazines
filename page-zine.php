@@ -1,8 +1,11 @@
-<?php include('part-header.php'); ?>
+<?php
+include('part-header.php');
+$ref = $_GET['z'] ?? NULL;
+?>
 
 <div class='wrapper'>
   <div class='wrapper__inner'>
-    ...ZINE :)
+    <?php echo $ref; ?>
   </div>
 </div>
 

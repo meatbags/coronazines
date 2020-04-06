@@ -39,20 +39,23 @@ $sessionToken = $loggedIn ? (new Session())->get('session_token') : NULL;
       <div class='nav__inner'>
         <div class='nav__pane'>
           <div class='nav__item'><a href='index.php'>VIRULENT zines</a></div>
+          <?php if ($isAdmin): ?>
+            <div class='nav__item'><a href='page-admin.php'>admin</a></div>
+          <?php endif; ?>
         </div>
         <div class='nav__pane'>
           <?php if ($loggedIn): ?>
             <div class='nav__item'><a href='index.php'>zines</a></div>
             <div class='nav__item'><a href='page-my-zines.php'>my zines</a></div>
             <div class='nav__item'><a href='page-create-zine.php'>create a zine</a></div>
+            <div class='nav__item'><a href='page-about.php'>about</a></div>
             <div class='nav__item'><a href='page-logout.php'>log out</a></div>
           <?php else: ?>
+            <div class='nav__item'><a href='index.php'>zines</a></div>
+            <div class='nav__item'><a href='page-login.php'>create a zine</a></div>
             <div class='nav__item'><a href='page-login.php'>log in</a></div>
             <div class='nav__item'><a href='page-login.php'>register</a></div>
-          <?php endif; ?>
-          <div class='nav__item'><a href='page-about.php'>about</a></div>
-          <?php if ($isAdmin): ?>
-            <div class='nav__item'><a href='page-admin.php'>admin</a></div>
+            <div class='nav__item'><a href='page-about.php'>about</a></div>
           <?php endif; ?>
         </div>
       </div>

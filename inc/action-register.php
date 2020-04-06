@@ -35,4 +35,4 @@ if (!UserHandler::login($name, $password)) {
   die();
 }
 
-echo message('REDIRECT', 'index.php');
+echo message('REDIRECT', NULL, 'index.php');

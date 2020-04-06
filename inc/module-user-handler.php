@@ -37,6 +37,13 @@ class UserHandler {
     }
   }
 
+  public static function listUsers() {
+    $req = new Request();
+    $sql = 'SELECT user_id, user_role_id, user_name, user_created_at, user_deleted FROM user WHERE 1';
+    $data = $req->query($sql);
+    return $data;
+  }
+
   public static function createUser($name, $password) {
     $req = new Request();
     $sql = 'INSERT INTO user (user_name, user_role_id, user_password, user_created_at) VALUES (?, ?, ?, ?)';
