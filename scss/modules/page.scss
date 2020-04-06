@@ -1,5 +1,5 @@
-$pageTransform: translate3d(-1px, 0, 0) rotateY(0) scale(1.0);
-$pageTransformFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
+$pageTransform: translate3d(-1px, 0, 0) rotateY(0) scale(0.995);
+$pageTransformFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(0.995);
 $pageTransformActive: translate3d(-2px, 0, 1px) rotateY(0) scale(1.0);
 $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
 
@@ -35,7 +35,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
       object-fit: cover;
       pointer-events: none;
       backface-visibility: hidden;
-      opacity: 0;
+      //opacity: 0;
       transition: opacity $transitionFast;
     }
 
@@ -67,7 +67,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
   &.visible {
     .page__inner {
       img {
-        opacity: 0.75;
+        //opacity: 0.75;
       }
     }
   }

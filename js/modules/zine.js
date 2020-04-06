@@ -7,7 +7,13 @@ import Page from './page';
 
 class Zine {
   constructor(params) {
-    this.data = params.data;
+    this.data = {
+      zine_ref: params.data.zine_ref,
+      zine_title: params.data.zine_title,
+      zine_author: params.data.zine_author,
+      zine_description: params.data.zine_description,
+      zine_content: params.data.zine_content,
+    };
     this.domTarget = params.domTarget;
     console.log(this.data);
 
@@ -91,6 +97,10 @@ class Zine {
       target.style.width = `${this.width}px`;
       target.style.height = `${this.height}px`;
     }
+  }
+
+  getRef() {
+    return this.data.zine_ref;
   }
 
   getSize() {

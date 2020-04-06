@@ -54,7 +54,6 @@ $sessionToken = $loggedIn ? (new Session())->get('session_token') : NULL;
             <div class='nav__item'><a href='index.php'>zines</a></div>
             <div class='nav__item'><a href='page-login.php'>create a zine</a></div>
             <div class='nav__item'><a href='page-login.php'>log in</a></div>
-            <div class='nav__item'><a href='page-login.php'>register</a></div>
             <div class='nav__item'><a href='page-about.php'>about</a></div>
           <?php endif; ?>
         </div>

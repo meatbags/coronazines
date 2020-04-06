@@ -5,7 +5,17 @@ import Zine from './zine';
 class ZineHandler {
   constructor() {
     this.zines = [];
-    this.render();
+
+    // get embedded zine
+    const el = document.querySelector('#zine-data-target');
+    if (el) {
+      try {
+        const data = JSON.parse(el.innerHTML);
+        this.addZine(data);
+      } catch(err) {
+        console.log(err);
+      }
+    }
   }
 
   resize() {
@@ -19,12 +29,21 @@ class ZineHandler {
     this.ref.navigation = root.modules.navigation;
   }
 
+  addZine(data) {
+    const zine = new Zine({
+      data: data,
+      domTarget: document.querySelector('#zine-target'),
+    });
+    this.zines.push(zine);
+    zine.show();
+  }
+
   openZine(ref) {
     // hide zines
     this.zines.forEach(zine => { zine.hide(); });
 
     // show zine if loaded
-    const zine = this.zines.find(z => z.data.zine_ref === ref);
+    const zine = this.zines.find(z => z.getRef() === ref);
     if (zine) {
       zine.show();
 
@@ -42,41 +61,13 @@ class ZineHandler {
         .then(json => {
           if (json.res === 'SUCCESS') {
             if (json.data !== null) {
-              const zine = new Zine({
-                data: json.data,
-                domTarget: document.querySelector('#zine-target'),
-              });
-              this.zines.push(zine);
-              zine.show();
+              this.addZine(json.data);
             }
           } else {
             console.log(json);
           }
         });
     }
-
-    // show viewer
-    this.ref.navigation.openView('#view-viewer');
-  }
-
-  render() {
-    const data = document.querySelector('#data-target');
-    if (!data) {
-      return;
-    }
-
-    // create zine
-    const title = data.dataset.title;
-    const content = data.dataset.content.split(';').map(src => `<img src='${src}'>`);
-    const zine = new Zine({
-      title: title,
-      pages: content,
-      domTarget: document.querySelector('#zine-target'),
-    });
-
-    // init
-    this.zines.push(zine);
-    zine.show();
   }
 }
 

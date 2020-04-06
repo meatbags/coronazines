@@ -20,6 +20,16 @@ class ZineHandler {
     return NULL;
   }
 
+  public static function sanitise($zine) {
+    return array(
+      'zine_ref' => htmlspecialchars($zine['zine_ref']),
+      'zine_title' => htmlspecialchars($zine['zine_title']),
+      'zine_author' => htmlspecialchars($zine['zine_author']),
+      'zine_description' => htmlspecialchars($zine['zine_description']),
+      'zine_content' => filter_var($zine['zine_content'], FILTER_SANITIZE_URL),
+    );
+  }
+
   public static function saveZine($params) {
     $title = $params['title'];
     $content = $params['content'];
