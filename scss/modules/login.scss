@@ -1,14 +1,14 @@
-.login-page {
+.login {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
-  .login-page__pane {
+  .login__pane {
     @include padding(4, 4);
 
     .title {
-      font-weight: bold;
-      text-transform: uppercase;
+      //font-weight: bold;
+      //text-transform: uppercase;
     }
 
     &:first-child {
@@ -19,7 +19,7 @@
   @media screen and (max-width: $tabletPortrait) {
     flex-direction: column;
 
-    .login-page__pane {
+    .login__pane {
       &:first-child {
         border-right: none;
         border-bottom: 1px solid rgba($black, 0.75);

@@ -17,7 +17,7 @@ class FormHandler {
   submit(form) {
     const msg = form.dataset.msg || form.action;
     console.log('[FormHandler]', form.action);
-    const alert = new Alert({msg: msg});
+    const alert = new Alert({msg: msg, domTarget: form});
     const formData = new FormData(form);
     fetch(form.action, {method: 'POST', body: formData})
       .then(res => res.json())

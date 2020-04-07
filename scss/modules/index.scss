@@ -1,13 +1,19 @@
 @import './global';
 @import './wrapper';
-@import './scroll';
+
+// pages
+@import './page';
+@import './login';
+
+// components
 @import './view';
 @import './viewer';
 @import './nav';
 @import './zine-list';
 @import './zine';
 @import './zine-page';
-@import './login-page';
 @import './alert';
-@import './form';
 @import './table';
+@import './form';
+@import './scroll';
+@import './loading-screen'

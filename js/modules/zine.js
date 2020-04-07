@@ -92,8 +92,10 @@ class Zine {
       const rect = GetContainedRect(ratio, parent);
       const target = this.el.querySelector('.zine__inner');
       const scale = 0.6;
-      this.width = Math.round((rect.width / 2) * scale);
-      this.height = Math.round((rect.height) * scale);
+      //this.width = Math.round((rect.width / 2) * scale);
+      //this.height = Math.round((rect.height) * scale);
+      this.width = rect.width / 2 * scale;
+      this.height = rect.height * scale;
       target.style.width = `${this.width}px`;
       target.style.height = `${this.height}px`;
     }
