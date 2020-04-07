@@ -3,6 +3,7 @@
 import Navigation from './modules/navigation';
 import ZineHandler from './modules/zine_handler';
 import FormHandler from './modules/form_handler';
+import LoadingScreen from './modules/loading_screen';
 
 class App {
   constructor() {
@@ -10,6 +11,7 @@ class App {
       navigation: new Navigation(),
       zineHandler: new ZineHandler(),
       formHandler: new FormHandler(),
+      loadingScreen: new LoadingScreen(),
     };
 
     // bind

@@ -1,4 +1,4 @@
-<div class='loading-screen'>
+<div id='loading-screen-target' class='loading-screen active animated'>
   <div class='loading-screen__inner'>
     <div class='loading-screen__zine'>
       <div class='loading-screen__page'></div>
