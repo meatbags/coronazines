@@ -34,7 +34,6 @@ $sessionToken = $loggedIn ? (new Session())->get('session_token') : NULL;
 <?php else: ?>
   <body>
 <?php endif; ?>
-    <?php include('part-loading-screen.php'); ?>
     <div class='nav'>
       <div class='nav__inner'>
         <div class='nav__pane'>

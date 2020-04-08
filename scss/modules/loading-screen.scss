@@ -84,6 +84,8 @@
       .loading-screen__page {
         position: absolute;
         background: linear-gradient(to right, darken($background, 15%), darken($background, 7.5%), $white);
+        border: $borderGrey;
+        //background: linear-gradient(to right, lighten($black, 25%), $black);
         height: 125px;
         width: 125px * 0.707;
         transform-origin: 0 50%;
@@ -92,7 +94,7 @@
         animation-iteration-count: infinite;
         animation-timing-function: linear;
         animation-duration: 3s;
-        //border: $borderGrey;
+        //
 
         &:hover {
           transform: rotateY(-30deg);

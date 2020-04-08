@@ -11,7 +11,7 @@ class LoadingScreen {
   }
 
   show() {
-    if (!this.active) {
+    if (this.el && !this.active) {
       this.active = true;
       this.el.classList.remove('hidden');
       this.el.classList.add('animated');
@@ -20,7 +20,7 @@ class LoadingScreen {
   }
 
   hide() {
-    if (this.active) {
+    if (this.el && this.active) {
       this.active = false;
       setTimeout(() => {
         this.el.classList.remove('active');

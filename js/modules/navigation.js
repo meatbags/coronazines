@@ -9,14 +9,30 @@ class Navigation {
     this.ref = {};
     this.ref.zineHandler = root.modules.zineHandler;
 
-    // bind views
+    // collapse buttons
+    document.querySelectorAll('[data-collapse]').forEach(el => {
+      el.innerHTML = '<div></div><div></div>';
+      el.addEventListener('click', () => {
+        const target = document.querySelector(el.dataset.collapse);
+        el.classList.toggle('active');
+        if (target) {
+          if (el.classList.contains('active')) {
+            target.classList.add('collapsed');
+          } else {
+            target.classList.remove('collapsed');
+          }
+        }
+      });
+    })
+
+    // view buttons
     document.querySelectorAll('[data-view]').forEach(el => {
       el.addEventListener('click', () => {
         this.openView(el.dataset.view);
       });
     });
 
-    // bind zine list
+    // zine list
     document.querySelectorAll('[data-zine]').forEach(el => {
       el.addEventListener('click', () => {
         this.openZine(el.dataset.zine);

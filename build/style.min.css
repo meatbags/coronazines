@@ -137,7 +137,7 @@ html, body {
   width: 100%; }
 
 body {
-  font-family: "Playfair Display", serif;
+  font-family: "Karla", sans-serif;
   font-size: 14px;
   line-height: 1;
   letter-spacing: 1;
@@ -188,6 +188,63 @@ a {
       .login .login__pane:first-child {
         border-right: none;
         border-bottom: 1px solid rgba(44, 44, 47, 0.75); } }
+
+.page--creator {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-top: 40px; }
+  .page--creator .page--creator__left {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column; }
+    .page--creator .page--creator__left .section {
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      width: 100%; }
+      .page--creator .page--creator__left .section .section__header {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        position: relative;
+        border-bottom: 1px solid #2c2c2f;
+        font-size: 11px; }
+        .page--creator .page--creator__left .section .section__header [data-collapse] {
+          position: absolute;
+          height: 100%;
+          width: 20px;
+          right: 0;
+          top: 0;
+          cursor: pointer;
+          display: flex;
+          align-items: center; }
+          .page--creator .page--creator__left .section .section__header [data-collapse] div {
+            width: 50%;
+            border-bottom: 1px solid #2c2c2f;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); }
+            .page--creator .page--creator__left .section .section__header [data-collapse] div:nth-child(2) {
+              transform: translate(-50%, -50%) rotate(90deg);
+              opacity: 0; }
+          .page--creator .page--creator__left .section .section__header [data-collapse].active div:nth-child(2) {
+            opacity: 1; }
+      .page--creator .page--creator__left .section .section__body {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 4px;
+        padding-bottom: 4px; }
+      .page--creator .page--creator__left .section.collapsed .section__body {
+        display: none; }
+  .page--creator .page--creator__right {
+    width: 100%;
+    height: 100%; }
 
 .view {
   position: absolute;
@@ -635,6 +692,7 @@ form {
       .loading-screen .loading-screen__inner .loading-screen__zine .loading-screen__page {
         position: absolute;
         background: linear-gradient(to right, #c2c2cc, #d7d7de, #fcfcff);
+        border: 1px solid #acacaf;
         height: 125px;
         width: 88.375px;
         transform-origin: 0 50%;
