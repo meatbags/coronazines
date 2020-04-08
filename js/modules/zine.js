@@ -15,13 +15,11 @@ class Zine {
       zine_content: params.data.zine_content,
     };
     this.domTarget = params.domTarget;
-    console.log(this.data);
 
     // init
     this.index = 0;
-    this.pageContent = this.data.zine_content.split(';').map(src => {
-      return src === '' ? '' : `<img src='${src}'>`;
-    });
+    const sources = this.data.zine_content.split(';');
+    this.pageContent = sources.map(src => (src ? `<img src='${src}'>` : ''));
     this.pages = [];
     this.width = 0;
     this.height = 0;
@@ -29,8 +27,8 @@ class Zine {
   }
 
   show() {
-    this.el.classList.add('active');
     this.resize();
+    this.el.classList.add('active');
   }
 
   hide() {
@@ -88,12 +86,10 @@ class Zine {
   resize() {
     const parent = this.el.getBoundingClientRect();
     if (parent.width && parent.height) {
-      const ratio = {width: 1.414, height: 1};
+      const ratio = {width: Math.sqrt(2), height: 1};
       const rect = GetContainedRect(ratio, parent);
       const target = this.el.querySelector('.zine__inner');
-      const scale = 0.6;
-      //this.width = Math.round((rect.width / 2) * scale);
-      //this.height = Math.round((rect.height) * scale);
+      const scale = 0.65;
       this.width = rect.width / 2 * scale;
       this.height = rect.height * scale;
       target.style.width = `${this.width}px`;
@@ -149,10 +145,10 @@ class Zine {
       this.domTarget.appendChild(this.el);
       this.goToIndex(this.index);
 
-      // resize
+      // show
       setTimeout(() => {
-        this.resize();
-      }, 150);
+        this.show();
+      }, 50);
     }
   }
 }

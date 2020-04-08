@@ -18,7 +18,8 @@
             <a href='page-zine.php?z=<?php echo $ref; ?>'>
               <div class='item__background'>
                 <?php echo !empty($p1) ? "<img src='" . $p1 . "'>" : "<div class='placeholder'></div>"; ?>
-                <?php echo !empty($p2) ? "<img src='" . $p2 . "'>" : "<div class='placeholder'></div>"; ?>
+                <div class='placeholder'></div>
+                <?php //echo !empty($p2) ? "<img src='" . $p2 . "'>" : "<div class='placeholder'></div>"; ?>
               </div>
               <div class='item__title'>
                 <div class='text'>

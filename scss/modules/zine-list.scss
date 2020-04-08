@@ -50,11 +50,13 @@
             transition: transform $transitionFast;
 
             &:nth-child(1) {
-              z-index: 1;
+              z-index: 2;
             }
 
             &:nth-child(2) {
-
+              z-index: 1;
+              box-shadow: $boxShadow;
+              transform: translate3d(-50%, -50%, 0) rotateY(0) scale(0.992);
             }
           }
 
@@ -64,9 +66,7 @@
                 transform: translate3d(-50%, -50%, 0) rotateY(-25deg);
               }
 
-              &:nth-child(2) {
-                transform: translate3d(-50%, -50%, 0) rotateY(0);
-              }
+              &:nth-child(2) {}
             }
           }
         }

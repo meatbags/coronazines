@@ -35,7 +35,6 @@ class ZineHandler {
       domTarget: document.querySelector('#zine-target'),
     });
     this.zines.push(zine);
-    zine.show();
   }
 
   openZine(ref) {

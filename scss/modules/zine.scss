@@ -6,14 +6,19 @@
   height: 100%;
   user-select: none;
   pointer-events: none;
-  opacity: 0;
-  display: none;
   overflow: hidden;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity $transition, transform $transition;
 
   &.active {
     pointer-events: all;
     opacity: 1;
-    display: block;
+    transform: scale(1);
+  }
+
+  &.hidden {
+    display: none;
   }
 
   .zine__inner {

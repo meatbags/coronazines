@@ -1,6 +1,7 @@
 // colour
 $black: #2c2c2f;
 $white: #fcfcff;
+$grey: #acacaf;
 $background: #ececef;
 $colour: $black;
 $red: #ff2c2c;
@@ -11,6 +12,8 @@ $navHeight: 40px;
 
 // style
 $border: 1px solid $black;
+$borderGrey: 1px solid $grey;
+$boxShadow: 4px 12px 12px rgba($black, 0.125);
 
 // breakpoints
 $siteWidth: 1160px;
@@ -27,3 +30,4 @@ $indexLoading: 300;
 // animation
 $transition: 0.5s;
 $transitionFast: 0.3s;
+$transitionSlow: 0.6s;

@@ -291,11 +291,13 @@ a {
             transform: translate3d(-50%, -50%, 0) rotateY(0);
             transition: transform 0.3s; }
             .zine-list .item .item__inner a .item__background img:nth-child(1), .zine-list .item .item__inner a .item__background .placeholder:nth-child(1) {
-              z-index: 1; }
+              z-index: 2; }
+            .zine-list .item .item__inner a .item__background img:nth-child(2), .zine-list .item .item__inner a .item__background .placeholder:nth-child(2) {
+              z-index: 1;
+              box-shadow: 4px 12px 12px rgba(44, 44, 47, 0.125);
+              transform: translate3d(-50%, -50%, 0) rotateY(0) scale(0.992); }
           .zine-list .item .item__inner a .item__background:hover img:nth-child(1), .zine-list .item .item__inner a .item__background:hover .placeholder:nth-child(1) {
             transform: translate3d(-50%, -50%, 0) rotateY(-25deg); }
-          .zine-list .item .item__inner a .item__background:hover img:nth-child(2), .zine-list .item .item__inner a .item__background:hover .placeholder:nth-child(2) {
-            transform: translate3d(-50%, -50%, 0) rotateY(0); }
         .zine-list .item .item__inner a .item__title {
           width: 100%;
           height: 12.5%;
@@ -335,13 +337,16 @@ a {
   height: 100%;
   user-select: none;
   pointer-events: none;
+  overflow: hidden;
   opacity: 0;
-  display: none;
-  overflow: hidden; }
+  transform: scale(0.95);
+  transition: opacity 0.5s, transform 0.5s; }
   .zine.active {
     pointer-events: all;
     opacity: 1;
-    display: block; }
+    transform: scale(1); }
+  .zine.hidden {
+    display: none; }
   .zine .zine__inner {
     position: absolute;
     top: 50%;
@@ -407,8 +412,8 @@ a {
   cursor: grab;
   user-select: none;
   pointer-events: none;
-  transition: transform 0.5s;
-  transform: translate3d(-1px, 0, 0) rotateY(0) scale(0.995); }
+  transition: transform 0.5s, border 0.5s;
+  transform: translate3d(0, 0, 0) rotateY(0) scale(0.99); }
   .zine-page .zine-page__inner {
     position: absolute;
     top: 0;
@@ -418,8 +423,9 @@ a {
     backface-visibility: hidden;
     transform-style: preserve-3d;
     overflow: hidden;
-    background: #fcfcff;
-    display: flex; }
+    display: flex;
+    transition-delay: 0.6s;
+    background: #fcfcff; }
     .zine-page .zine-page__inner img {
       width: 100%;
       height: 100%;
@@ -437,13 +443,13 @@ a {
     .zine-page .zine-page__inner.zine-page__back {
       transform: rotateY(180deg); }
   .zine-page.flipped {
-    transform: translate3d(0, 0, 0) rotateY(-180deg) scale(0.995); }
+    transform: translate3d(0, 0, 0) rotateY(-180deg) scale(0.99); }
   .zine-page.disable-transition {
     transition: none;
     cursor: grabbing; }
   .zine-page.active {
     pointer-events: all;
-    transform: translate3d(-2px, 0, 0) rotateY(0) scale(1); }
+    transform: translate3d(-1px, 0, 0) rotateY(0) scale(1); }
     .zine-page.active.flipped {
       transform: translate3d(0, 0, 0) rotateY(-180deg) scale(1); }
     .zine-page.active .zine-page__inner img {
@@ -539,9 +545,9 @@ form {
 
 @keyframes loading-anim-wrapper {
   0% {
-    transform: translate(-5%) rotateZ(5deg); }
+    transform: translate(-5%); }
   100% {
-    transform: translate(5%) rotateZ(-5deg); } }
+    transform: translate(5%); } }
 
 @keyframes loading-anim-1 {
   0% {
@@ -590,12 +596,9 @@ form {
   width: 100%;
   height: 100%;
   z-index: 300;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s; }
+  transition: opacity 0.6s; }
   .loading-screen.active {
     opacity: 1; }
   .loading-screen.animated .loading-screen__inner .loading-screen__zine {
@@ -613,9 +616,12 @@ form {
   .loading-screen.hidden {
     display: none; }
   .loading-screen .loading-screen__inner {
-    position: relative;
-    width: 300px;
-    height: 300px; }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px; }
     .loading-screen .loading-screen__inner .loading-screen__zine {
       width: 100%;
       height: 100%;
@@ -623,15 +629,14 @@ form {
       perspective: 1000px;
       transform-style: preserve-3d;
       animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
+      animation-timing-function: linear;
       animation-direction: alternate;
       animation-duration: 1.5s; }
       .loading-screen .loading-screen__inner .loading-screen__zine .loading-screen__page {
         position: absolute;
         background: linear-gradient(to right, #c2c2cc, #d7d7de, #fcfcff);
-        border: 1px solid #888;
-        height: 150px;
-        width: 106.05px;
+        height: 125px;
+        width: 88.375px;
         transform-origin: 0 50%;
         top: 25%;
         left: 50%;
@@ -641,6 +646,10 @@ form {
         .loading-screen .loading-screen__inner .loading-screen__zine .loading-screen__page:hover {
           transform: rotateY(-30deg); }
     .loading-screen .loading-screen__inner .loading-screen__text {
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 0px;
+      padding-bottom: 0px;
       position: absolute;
       top: 85%;
       left: 50%;

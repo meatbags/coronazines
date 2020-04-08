@@ -1,6 +1,6 @@
-$pageTransform: translate3d(-1px, 0, 0) rotateY(0) scale(0.995);
-$pageTransformFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(0.995);
-$pageTransformActive: translate3d(-2px, 0, 0) rotateY(0) scale(1.0);
+$pageTransform: translate3d(0, 0, 0) rotateY(0) scale(0.99);
+$pageTransformFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(0.99);
+$pageTransformActive: translate3d(-1px, 0, 0) rotateY(0) scale(1.0);
 $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
 
 .zine-page {
@@ -14,7 +14,7 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
   cursor: grab;
   user-select: none;
   pointer-events: none;
-  transition: transform $transition;
+  transition: transform $transition, border $transition;
   transform: $pageTransform;
 
   .zine-page__inner {
@@ -26,8 +26,9 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
     backface-visibility: hidden;
     transform-style: preserve-3d;
     overflow: hidden;
-    background: $white;
     display: flex;
+    transition-delay: $transitionSlow;
+    background: $white;
 
     img {
       width: 100%;
@@ -35,7 +36,6 @@ $pageTransformActiveFlipped: translate3d(0, 0, 0) rotateY(-180deg) scale(1.0);
       object-fit: cover;
       pointer-events: none;
       backface-visibility: hidden;
-      //opacity: 0;
       transition: opacity $transitionFast;
     }
 
