@@ -2,7 +2,9 @@
 
 <div class='wrapper'>
   <div class='wrapper__inner'>
-    My zines...
+    <div class='page'>
+      My ZINES
+    </div>
   </div>
 </div>
 

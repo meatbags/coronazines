@@ -201,18 +201,24 @@ a {
     display: flex;
     flex-direction: column; }
     .page--creator .page--creator__left .section {
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-top: 16px;
-      padding-bottom: 16px;
-      width: 100%; }
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      width: 100%;
+      background: #fcfcff;
+      box-shadow: 4px 12px 12px rgba(44, 44, 47, 0.125); }
       .page--creator .page--creator__left .section .section__header {
         padding-left: 0px;
         padding-right: 0px;
-        padding-top: 4px;
-        padding-bottom: 4px;
+        padding-top: 8px;
+        padding-bottom: 8px;
         position: relative;
-        border-bottom: 1px solid #2c2c2f;
+        border-bottom: 1px dashed rgba(172, 172, 175, 0.5);
         font-size: 11px; }
         .page--creator .page--creator__left .section .section__header [data-collapse] {
           position: absolute;
@@ -238,13 +244,63 @@ a {
       .page--creator .page--creator__left .section .section__body {
         padding-left: 0px;
         padding-right: 0px;
-        padding-top: 4px;
-        padding-bottom: 4px; }
+        padding-top: 8px;
+        padding-bottom: 8px; }
+        .page--creator .page--creator__left .section .section__body .row {
+          padding-left: 0px;
+          padding-right: 0px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+          display: flex; }
+          .page--creator .page--creator__left .section .section__body .row label {
+            width: 50%; }
+          .page--creator .page--creator__left .section .section__body .row input, .page--creator .page--creator__left .section .section__body .row textarea {
+            padding-left: 2px;
+            padding-right: 2px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            width: 50%;
+            outline: none; }
+          .page--creator .page--creator__left .section .section__body .row .checkbox {
+            padding-left: 2px;
+            padding-right: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            width: 50%; }
+            .page--creator .page--creator__left .section .section__body .row .checkbox input {
+              width: auto; }
+          .page--creator .page--creator__left .section .section__body .row textarea {
+            resize: none; }
+      .page--creator .page--creator__left .section.collapsed .section__header {
+        border-bottom: none; }
       .page--creator .page--creator__left .section.collapsed .section__body {
         display: none; }
   .page--creator .page--creator__right {
     width: 100%;
     height: 100%; }
+
+#zine-password {
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  transform: translate(-50%, -50%);
+  background: #fcfcff;
+  box-shadow: 4px 12px 12px rgba(44, 44, 47, 0.125);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s; }
+  #zine-password .row {
+    label-width: 30%; }
+    #zine-password .row input {
+      width: 70%; }
+  #zine-password.active {
+    pointer-events: all;
+    opacity: 1; }
 
 .view {
   position: absolute;
@@ -515,18 +571,16 @@ a {
 .alert {
   padding-left: 0px;
   padding-right: 0px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 200;
   opacity: 0;
-  transform: translate(0, 8px);
   transition: transform 0.5s, opacity 0.5s; }
   .alert.active {
-    opacity: 1;
-    transform: translate(0, 0); }
+    opacity: 1; }
   .alert.alert--error {
     color: #ff2c2c; }
 
@@ -570,22 +624,23 @@ form {
     form .row label {
       width: 50%; }
     form .row input, form .row textarea {
-      padding-left: 2px;
-      padding-right: 2px;
-      padding-top: 1px;
-      padding-bottom: 1px;
-      width: 50%;
-      border: 1px solid rgba(44, 44, 47, 0.5);
-      outline: none !important;
-      background: #fcfcff; }
+      width: 50%; }
     form .row textarea {
       width: 50%;
       resize: vertical; }
+  form input {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid rgba(44, 44, 47, 0.5);
+    outline: none !important;
+    background: #fcfcff; }
   form input[type="submit"] {
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 4px;
@@ -609,42 +664,42 @@ form {
 @keyframes loading-anim-1 {
   0% {
     transform: rotateY(0deg); }
-  25% {
-    transform: rotateY(-135deg); }
+  50% {
+    transform: rotateY(-180deg); }
   100% {
-    transform: rotateY(-360deg); } }
+    transform: rotateY(-180deg); } }
 
 @keyframes loading-anim-2 {
   0% {
     transform: rotateY(0deg); }
-  25% {
-    transform: rotateY(-112.5deg); }
+  50% {
+    transform: rotateY(-135deg); }
   100% {
-    transform: rotateY(-360deg); } }
+    transform: rotateY(-180deg); } }
 
 @keyframes loading-anim-3 {
   0% {
     transform: rotateY(0deg); }
-  25% {
+  50% {
     transform: rotateY(-90deg); }
   100% {
-    transform: rotateY(-360deg); } }
+    transform: rotateY(-180deg); } }
 
 @keyframes loading-anim-4 {
   0% {
     transform: rotateY(0deg); }
-  25% {
-    transform: rotateY(-67.5deg); }
+  50% {
+    transform: rotateY(-45deg); }
   100% {
-    transform: rotateY(-360deg); } }
+    transform: rotateY(-180deg); } }
 
 @keyframes loading-anim-5 {
   0% {
     transform: rotateY(0deg); }
-  25% {
-    transform: rotateY(-45deg); }
+  50% {
+    transform: rotateY(0deg); }
   100% {
-    transform: rotateY(-360deg); } }
+    transform: rotateY(-180deg); } }
 
 .loading-screen {
   position: fixed;
@@ -655,21 +710,20 @@ form {
   z-index: 300;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.6s; }
+  transition: opacity 0.6s;
+  background: rgba(44, 44, 47, 0.5); }
   .loading-screen.active {
     opacity: 1; }
-  .loading-screen.animated .loading-screen__inner .loading-screen__zine {
-    animation-name: loading-anim-wrapper; }
-    .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(1) {
-      animation-name: loading-anim-1; }
-    .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(2) {
-      animation-name: loading-anim-2; }
-    .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(3) {
-      animation-name: loading-anim-3; }
-    .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(4) {
-      animation-name: loading-anim-4; }
-    .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(5) {
-      animation-name: loading-anim-5; }
+  .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(1) {
+    animation-name: loading-anim-1; }
+  .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(2) {
+    animation-name: loading-anim-2; }
+  .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(3) {
+    animation-name: loading-anim-3; }
+  .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(4) {
+    animation-name: loading-anim-4; }
+  .loading-screen.animated .loading-screen__inner .loading-screen__zine .loading-screen__page:nth-child(5) {
+    animation-name: loading-anim-5; }
   .loading-screen.hidden {
     display: none; }
   .loading-screen .loading-screen__inner {
@@ -677,8 +731,8 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px; }
+    width: 200px;
+    height: 200px; }
     .loading-screen .loading-screen__inner .loading-screen__zine {
       width: 100%;
       height: 100%;
@@ -692,15 +746,15 @@ form {
       .loading-screen .loading-screen__inner .loading-screen__zine .loading-screen__page {
         position: absolute;
         background: linear-gradient(to right, #c2c2cc, #d7d7de, #fcfcff);
-        border: 1px solid #acacaf;
-        height: 125px;
-        width: 88.375px;
+        height: 100px;
+        width: 71px;
         transform-origin: 0 50%;
         top: 25%;
         left: 50%;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-        animation-duration: 3s; }
+        animation-duration: 2s;
+        animation-direction: alternate; }
         .loading-screen .loading-screen__inner .loading-screen__zine .loading-screen__page:hover {
           transform: rotateY(-30deg); }
     .loading-screen .loading-screen__inner .loading-screen__text {
@@ -709,6 +763,7 @@ form {
       padding-top: 0px;
       padding-bottom: 0px;
       position: absolute;
+      color: #fcfcff;
       top: 85%;
       left: 50%;
       transform: translate(-50%, -50%); }

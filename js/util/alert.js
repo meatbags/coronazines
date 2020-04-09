@@ -11,12 +11,10 @@ class Alert {
   }
 
   destroy() {
-    if (this.el.classList.contains('active')) {
-      this.el.classList.remove('active');
-      setTimeout(() => {
-        this.el.remove();
-      }, 500);
-    }
+    this.el.classList.remove('active');
+    setTimeout(() => {
+      this.el.remove();
+    }, 500);
   }
 
   render() {
@@ -25,11 +23,6 @@ class Alert {
       this.el = CreateElement({
         class: classList,
         innerHTML: this.msg || this.error,
-      });
-
-      // remove other alerts
-      document.querySelectorAll('.alert.active').forEach(el => {
-        el.classList.remove('active');
       });
 
       // activate
@@ -44,6 +37,11 @@ class Alert {
           this.el.style.top = `${y}px`;
           this.el.style.bottom = 'auto';
         }
+
+        // remove other alerts
+        document.querySelectorAll('.alert.active').forEach(el => {
+          el.classList.remove('active');
+        });
 
         // activate
         this.el.classList.add('active');

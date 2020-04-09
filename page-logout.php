@@ -7,7 +7,9 @@ $session->logOut(); ?>
 
 <div class='wrapper'>
   <div class='wrapper__inner'>
-    You are logged out.
+    <div class='page'>
+      You are logged out.
+    </div>
   </div>
 </div>
 

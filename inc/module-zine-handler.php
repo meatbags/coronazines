@@ -1,6 +1,7 @@
 <?php
 include_once('module-request.php');
 include_once('module-utils.php');
+include_once('module-validate.php');
 
 class ZineHandler {
   public static function listPublicZines() {
@@ -20,6 +21,16 @@ class ZineHandler {
     return NULL;
   }
 
+  public static function getZineByPassword($password) {
+    $req = new Request();
+    $sql = 'SELECT * FROM zine WHERE zine_password=?';
+    $data = $req->preparedQuery($sql, 's', $password);
+    if (count($data) > 0) {
+      return $data[0];
+    }
+    return NULL;
+  }
+
   public static function sanitise($zine) {
     return array(
       'zine_ref' => htmlspecialchars($zine['zine_ref']),
@@ -27,7 +38,22 @@ class ZineHandler {
       'zine_author' => htmlspecialchars($zine['zine_author']),
       'zine_description' => htmlspecialchars($zine['zine_description']),
       'zine_content' => filter_var($zine['zine_content'], FILTER_SANITIZE_URL),
+      'zine_private' => htmlspecialchars($zine['zine_private']),
+      'zine_protected' => htmlspecialchars($zine['zine_protected']),
+      'zine_updated_at' => htmlspecialchars($zine['zine_updated_at'])
     );
+  }
+
+  public static function getZinePassword($ref) {
+    if (!Validate::isZineOwner($ref)) {
+      return NULL;
+    }
+    $req = 'SELECT zine_password FROM zine WHERE zine_ref=?';
+    $data = $req->preparedQuery($sql, 's', $ref);
+    if (count($data) > 0) {
+      return $data[0]['zine_password'];
+    }
+    return NULL;
   }
 
   public static function saveZine($params) {

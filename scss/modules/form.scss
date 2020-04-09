@@ -14,11 +14,7 @@ form {
     }
 
     input, textarea {
-      @include padding(0.25, 0.125);
       width: 50%;
-      border: 1px solid rgba($black, 0.5);
-      outline: none !important;
-      background: $white;
     }
 
     textarea {
@@ -27,8 +23,16 @@ form {
     }
   }
 
+  input {
+    //@include padding(0.25, 0.125);
+    @include padding(0.5, 0.25);
+    border: 1px solid rgba($black, 0.5);
+    outline: none !important;
+    background: $white;
+  }
+
   input[type="submit"] {
-    @include margin(0, 0.5);
+    @include margin(0, 1);
     @include padding(0, 0.5);
     width: 100%;
     border: 1px solid rgba($black, 0.5);

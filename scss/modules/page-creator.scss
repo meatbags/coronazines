@@ -9,13 +9,16 @@
     flex-direction: column;
 
     .section {
-      @include padding(0, 2);
+      @include padding(1, 0);
+      @include margin(0, 1);
       width: 100%;
+      background: $white;
+      box-shadow: $boxShadow;
 
       .section__header {
-        @include padding(0, 0.5);
+        @include padding(0, 1);
         position: relative;
-        border-bottom: $border;
+        border-bottom: 1px dashed rgba($grey, 0.5);
         font-size: $fontSizeSmall;
 
         [data-collapse] {
@@ -53,10 +56,41 @@
       }
 
       .section__body {
-        @include padding(0, 0.5);
+        @include padding(0, 1);
+
+        .row {
+          @include padding(0, 0.25);
+          display: flex;
+
+          label {
+            width: 50%;
+          }
+
+          input, textarea {
+            @include padding(0.25, 0.25);
+            width: 50%;
+            outline: none;
+          }
+
+          .checkbox {
+            @include padding(0.25, 0);
+            width: 50%;
+
+            input {
+              width: auto;
+            }
+          }
+
+          textarea {
+            resize: none;
+          }
+        }
       }
 
       &.collapsed {
+        .section__header {
+          border-bottom: none;
+        }
         .section__body {
           display: none;
         }

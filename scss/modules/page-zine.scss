@@ -1,0 +1,27 @@
+#zine-password {
+  @include padding(4, 4);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  transform: translate(-50%, -50%);
+  background: $white;
+  box-shadow: $boxShadow;
+  opacity: 0;
+  pointer-events: none;
+  transition: $transition;
+
+  .row {
+    label: {
+      width: 30%;
+    }
+    input {
+      width: 70%;
+    }
+  }
+
+  &.active {
+    pointer-events: all;
+    opacity: 1;
+  }
+}

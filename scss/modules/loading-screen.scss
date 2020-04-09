@@ -2,31 +2,18 @@
   0% { transform: translate(-5%); }// rotateZ(5deg); }
   100% { transform: translate(5%); }// rotateZ(-5deg); }
 }
-@keyframes loading-anim-1 {
+
+@mixin create-anim($deg) {
   0% { transform: rotateY(0deg); }
-  25% { transform: rotateY(-135deg); }
-  100% { transform: rotateY(-360deg); }
+  50% { transform: rotateY($deg); }
+  100% { transform: rotateY(-180deg); }
 }
-@keyframes loading-anim-2 {
-  0% { transform: rotateY(0deg); }
-  25% { transform: rotateY(-112.5deg); }
-  100% { transform: rotateY(-360deg); }
-}
-@keyframes loading-anim-3 {
-  0% { transform: rotateY(0deg); }
-  25% { transform: rotateY(-90deg); }
-  100% { transform: rotateY(-360deg); }
-}
-@keyframes loading-anim-4 {
-  0% { transform: rotateY(0deg); }
-  25% { transform: rotateY(-67.5deg); }
-  100% { transform: rotateY(-360deg); }
-}
-@keyframes loading-anim-5 {
-  0% { transform: rotateY(0deg); }
-  25% { transform: rotateY(-45deg); }
-  100% { transform: rotateY(-360deg); }
-}
+
+@keyframes loading-anim-1 { @include create-anim(-180deg) }
+@keyframes loading-anim-2 { @include create-anim(-135deg) }
+@keyframes loading-anim-3 { @include create-anim(-90deg) }
+@keyframes loading-anim-4 { @include create-anim(-45deg) }
+@keyframes loading-anim-5 { @include create-anim(-0deg) }
 
 .loading-screen {
   position: fixed;
@@ -38,6 +25,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity $transitionSlow;
+  background: rgba($black, 0.5);
 
   &.active {
     opacity: 1;
@@ -46,7 +34,6 @@
   &.animated {
     .loading-screen__inner {
       .loading-screen__zine {
-        animation-name: loading-anim-wrapper;
         .loading-screen__page {
           &:nth-child(1) { animation-name: loading-anim-1; }
           &:nth-child(2) { animation-name: loading-anim-2; }
@@ -67,8 +54,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
 
     .loading-screen__zine {
       width: 100%;
@@ -84,17 +71,17 @@
       .loading-screen__page {
         position: absolute;
         background: linear-gradient(to right, darken($background, 15%), darken($background, 7.5%), $white);
-        border: $borderGrey;
-        //background: linear-gradient(to right, lighten($black, 25%), $black);
-        height: 125px;
-        width: 125px * 0.707;
+        //border: $borderGrey;
+        //background: $background;
+        height: 100px;
+        width: 71px;
         transform-origin: 0 50%;
         top: 25%;
         left: 50%;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
-        animation-duration: 3s;
-        //
+        animation-duration: 2s;
+        animation-direction: alternate;
 
         &:hover {
           transform: rotateY(-30deg);
@@ -105,6 +92,7 @@
     .loading-screen__text {
       @include padding(1, 0);
       position: absolute;
+      color: $white;
       top: 85%;
       left: 50%;
       transform: translate(-50%, -50%);

@@ -4,7 +4,6 @@ if (!Validate::isAdmin()) {
   header("Location: 404.php");
   die();
 }
-
 include_once('inc/module-user-handler.php');
 $users = UserHandler::listUsers();
 ?>
