@@ -3,7 +3,10 @@
 import Alert from '../util/alert';
 
 class FormHandler {
-  constructor() {}
+  constructor() {
+    const el = document.querySelector('[data-session-token]');
+    this.sessionToken = el ? el.dataset.sessionToken : null;
+  }
 
   bind(root) {
     this.ref = {};
@@ -20,27 +23,31 @@ class FormHandler {
 
   submit(form) {
     const msg = form.dataset.msg || form.action;
-    console.log('[FormHandler]', form.action);
     const alert = new Alert({msg: msg, domTarget: form});
+
+    // create form body
     const formData = new FormData(form);
+    formData.append('session_token', this.sessionToken);
+
+    // submit async
+    console.log('[FormHandler]', form.action);
     fetch(form.action, {method: 'POST', body: formData})
       .then(res => res.json())
-      .then(json => {
-        console.log(json);
-        if (json.res === 'SUCCESS') {
-          const alert = new Alert({msg: json.msg, domTarget: form});
-          this.handle(json);
-        } else if (json.res === 'ERROR') {
-          const alert = new Alert({msg: json.msg, domTarget: form});
-        } else if (json.res === 'REDIRECT') {
-          const url = json.data;
-          window.location = url;
-        }
-      });
+      .then(json => { this.handle(json); });
   }
 
   handle(res) {
-    if (res.msg === 'action-get-zine' && res.data !== null) {
+    // logs
+    console.log(res);
+    if (res.res === 'SUCCESS' || res.res === 'ERROR') {
+      const alert = new Alert({msg: res.msg, domTarget: form});
+    } else if (res.res === 'REDIRECT') {
+      const url = res.data;
+      window.location = url;
+    }
+    
+    // handle specific actions
+    if (res.res === 'SUCCESS' && res.msg === 'action-get-zine' && res.data !== null) {
       this.ref.zineHandler.addZine(res.data);
       document.querySelectorAll('#zine-password').forEach(el => {
         el.classList.remove('active');

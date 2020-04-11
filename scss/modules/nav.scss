@@ -3,12 +3,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  //height: $navHeight;
   z-index: $indexNav;
+  display: flex;
+  justify-content: center;
 
   .nav__inner {
     @include padding(2, 2);
-    width: 100%;
+    width: $siteWidth;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -31,6 +32,12 @@
       &:last-child {
         justify-content: flex-end;
       }
+    }
+  }
+
+  @media screen and (max-width: $siteWidth) {
+    .nav__inner {
+      width: 100%;
     }
   }
 }

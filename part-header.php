@@ -46,7 +46,7 @@ $sessionToken = $loggedIn ? (new Session())->get('session_token') : NULL;
           <?php if ($loggedIn): ?>
             <div class='nav__item'><a href='index.php'>zines</a></div>
             <div class='nav__item'><a href='page-my-zines.php'>my zines</a></div>
-            <div class='nav__item'><a href='page-create-zine.php'>create a zine</a></div>
+            <div class='nav__item'><a href='page-edit-zine.php'>create a zine</a></div>
             <div class='nav__item'><a href='page-about.php'>about</a></div>
             <div class='nav__item'><a href='page-logout.php'>log out</a></div>
           <?php else: ?>
