@@ -4,22 +4,30 @@ include_once('module-validate.php');
 include_once('module-zine-handler.php');
 
 // session
-if (!Validata::sessionToken()) {
-  echo message('ERROR', 'action-save-zine', NULL);
+if (!Validate::sessionToken()) {
+  echo message('ERROR', 'Invalid session', NULL);
+  die();
+}
+
+// title must be set
+$title = $_POST['title'] ?? NULL;
+if (empty($title)) {
+  echo message('ERROR', 'Missing title', NULL);
   die();
 }
 
 // params
 $params = array(
   'zine_ref' => $_POST['ref'] ?? NULL,
-  'zine_title' => $_POST['title'] ?? NULL,
+  'zine_title' => $title,
   'zine_author' => $_POST['author'] ?? NULL,
+  'zine_password' => $_POST['password'] ?? NULL,
+  'zine_published' => $_POST['published'] ?? NULL,
+  'zine_private' => $_POST['private'] ?? NULL,
+  'zine_protected' => $_POST['private'] ?? NULL,
   'zine_password' => $_POST['password'] ?? NULL,
   'zine_content' => '',
 );
-
-// TODO: security
-// TODO: check user created zine? use IP for public zines? disable editing on page leave?
 
 // validate image urls
 $content = $_POST['content'] ?? '';
@@ -28,11 +36,20 @@ $urls = explode(';', $content);
 
 // validate, build delimited string
 for ($i=0, $lim=count($urls); $i<$lim; $i++) {
-  $input = $urls[$i];
-  $url = strlen($input) <= $maxLength && ;
+  $url = $urls[$i];
+  if (strlen($url) > $maxLength) {
+    echo message('ERROR', 'Image URL too long', NULL);
+    die();
+  }
   $params['zine_content'] .= $url . ($i == $lim - 1 ? '' : ';');
 }
 
-// save zine
-$res = ZineHandler::updateZine($params);
-echo message('SUCCESS', 'action-save-zine', $res);
+// create zine
+if (empty($params['zine_ref'])) {
+  $ref = ZineHandler::createZine($title);
+  $link = 'page-edit-zine.php?z=' . $ref;
+  echo message('REDIRECT', NULL, $link);
+} else {
+  ZineHandler::saveZine($params);
+  echo message('SUCCESS', 'Saved', NULL);
+}

@@ -20,9 +20,11 @@ class Alert {
   render() {
     if (!this.el) {
       const classList = 'alert' + (this.error ? ' alert--error' : '');
+      const msg = this.msg || this.error;
+      console.log(msg);
       this.el = CreateElement({
         class: classList,
-        innerHTML: this.msg || this.error,
+        innerHTML: msg,
       });
 
       // activate

@@ -39,13 +39,4 @@ class Session {
     $this->start();
     return isset($_SESSION['session_token']) && isset($_SESSION['role']) && $_SESSION['role'] !== 'none';
   }
-
-  function getToken() {
-    return $this->isLoggedIn() ? $_SESSION['session_token'] : NULL;
-  }
-
-  function validateSessionToken($token=NULL) {
-    $token = $token === NULL ? $this->getToken() : $token;
-    return $token !== NULL && !empty($token) && $token === $this->getToken();
-  }
 }

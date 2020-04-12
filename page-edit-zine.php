@@ -1,4 +1,7 @@
+<?php include('part-header.php'); ?>
+
 <?php
+include_once('inc/define.php');
 include_once('inc/module-validate.php');
 include_once('inc/module-zine-handler.php');
 if (!Validate::isLoggedIn()) {
@@ -8,29 +11,26 @@ if (!Validate::isLoggedIn()) {
 $ref = $_GET['z'] ?? NULL;
 $zine = $ref !== NULL && Validate::isZineOwner($ref) ? ZineHandler::getZine($ref) : NULL;
 ?>
-<?php include('part-header.php'); ?>
-
-<?php if ($zine):
-  $clean = ZineHandler::sanitise($zine); ?>
-  <div id='zine-prefill-target' style='display:none'><?php
-    echo json_encode($clean);
-  ?></div>
-<?php endif; ?>
 
 <?php if ($zine === NULL): ?>
   <div class='wrapper'>
     <div class='wrapper__inner'>
       <div class='page page--creator'>
-        <div>
+        <div id='create-zine-form'>
           <form action='inc/action-save-zine.php' method='POST' data-msg=''>
+            <div class='title'>Create Zine</div>
             <div class='row'><label>Zine Title</label><input type='text' name='title'></div>
-            <div class='row'><input type='submit' value='Create Zine'</div>
+            <div class='row'><input type='submit' value='Create'</div>
           </form>
         </div>
       </div>
     </div>
   </div>
 <?php else: ?>
+  <?php $clean = ZineHandler::sanitise($zine); ?>
+  <div id='zine-prefill' style='display:none;'>
+    <?php echo json_encode($clean); ?>
+  </div>
   <div class='wrapper'>
     <div class='wrapper__inner'>
       <div class='page page--creator'>
@@ -38,9 +38,8 @@ $zine = $ref !== NULL && Validate::isZineOwner($ref) ? ZineHandler::getZine($ref
           <div id='section-meta' class='section'>
             <div class='section__header'>META<div data-collapse='#section-meta'></div></div>
             <div class='section__body'>
-              <div class='row'><label>Title</label><input type='text' name='title'></div>
-              <div class='row'><label>Author</label><input type='text' name='author'></div>
-              <div class='row'><label>Short Description</label><textarea rows='2' maxlength='200' name='description'></textarea></div>
+              <div class='row'><label>Title</label><input type='text' name='title' value='<?php echo $clean['zine_title']; ?>'></div>
+              <div class='row'><label>Author</label><input type='text' name='author' value='<?php echo $clean['zine_author']; ?>'></div>
             </div>
           </div>
           <div id='section-content' class='section'>
@@ -50,18 +49,15 @@ $zine = $ref !== NULL && Validate::isZineOwner($ref) ? ZineHandler::getZine($ref
               <div class='page-list'></div>
             </div>
           </div>
-          <div id='section-settings' class='section'>
-            <div class='section__header'>SETTINGS<div data-collapse='#section-settings'></div></div>
-            <div class='section__body'>
-              <div class='row'><label>Make Public</small></label><div class='checkbox'><input type='checkbox' name='is_public' checked></div></div>
-              <div class='row'><label>Require Passphrase</label><div class='checkbox'><input type='checkbox' name='is_password_protected'></div></div>
-              <div class='row'><label>Passphrase</label><input type='text' name='password'></div>
-            </div>
-          </div>
           <div id='section-sharing' class='section'>
             <div class='section__header'>SHARING<div data-collapse='#section-sharing'></div></div>
             <div class='section__body'>
-              generated URL here
+              <div class='row'><label>Make Public</small></label><div class='checkbox'><input type='checkbox' name='is_public' value='1' checked></div></div>
+              <div class='row'><label>Require Passphrase</label><div class='checkbox'><input type='checkbox' name='is_password_protected' value='1'></div></div>
+              <div class='row'><label>Passphrase</label><input type='text' name='password'></div>
+              <br />
+              <div class='row'><div id='button-copy-url-target'><?php echo BASE_URL . $clean['zine_ref']; ?></div></div>
+              <div class='row'><div id='button-copy-url' data-clipboard-target="#button-copy-url-target">COPY LINK</div></div>
             </div>
           </div>
         </div>
@@ -71,6 +67,7 @@ $zine = $ref !== NULL && Validate::isZineOwner($ref) ? ZineHandler::getZine($ref
       </div>
     </div>
   </div>
+  <?php include('part-loading-screen.php'); ?>
 <?php endif; ?>
 
 <?php include('part-footer.php'); ?>

@@ -16,92 +16,95 @@
       @include padding(2, 2);
       width: 100%;
       height: 100%;
+      display: flex;
+      flex-direction: column;
 
-      a {
+      .item__background {
+        position: relative;
+        padding-bottom: 0;
         width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
+        height: 87.5%;
+        flex-shrink: 1;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        cursor: pointer;
 
-        .item__background {
-          position: relative;
-          padding-bottom: 0;
+        a {
           width: 100%;
-          height: 87.5%;
-          flex-shrink: 1;
-          perspective: 1000px;
-          transform-style: preserve-3d;
-
-          img {
-            height: 100%;
-            width: auto;
-          }
-
-          .placeholder {
-            background: $white;
-          }
-
-          img, .placeholder {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform-origin: left center;
-            transform: translate3d(-50%, -50%, 0) rotateY(0);
-            transition: transform $transitionFast;
-
-            &:nth-child(1) {
-              z-index: 2;
-            }
-
-            &:nth-child(2) {
-              z-index: 1;
-              box-shadow: $boxShadow;
-              transform: translate3d(-50%, -50%, 0) rotateY(0) scale(0.992);
-            }
-          }
-
-          &:hover {
-            img, .placeholder {
-              &:nth-child(1) {
-                transform: translate3d(-50%, -50%, 0) rotateY(-25deg);
-              }
-
-              &:nth-child(2) {}
-            }
-          }
+          height: 100%;
+          display: flex;
         }
 
-        .item__title {
-          width: 100%;
-          height: 12.5%;
-          flex-shrink: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        img {
+          height: 100%;
+          width: auto;
+        }
 
-          .text {
-            position: relative;
+        .placeholder {
+          background: $white;
+        }
 
-            .underline {
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              width: 100%;
-              border-bottom: 1px solid $black;
-              opacity: 0;
-              //transform: translate(0, 0);
-              transition: $transitionFast;
-            }
+        img, .placeholder {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform-origin: left center;
+          transform: translate3d(-50%, -50%, 0) rotateY(0);
+          transition: transform $transitionFast;
+
+          &:nth-child(1) {
+            z-index: 2;
+          }
+
+          &:nth-child(2) {
+            z-index: 1;
+            box-shadow: $boxShadow;
+            transform: translate3d(-50%, -50%, 0) rotateY(0) scale(0.992);
           }
         }
 
         &:hover {
-          .item__title {
-            .text {
-              .underline {
-                opacity: 1;
-                transform: translate(0, 0);
-              }
+          img, .placeholder {
+            &:nth-child(1) {
+              transform: translate3d(-50%, -50%, 0) rotateY(-25deg);
+            }
+
+            &:nth-child(2) {}
+          }
+        }
+      }
+
+      .item__title {
+        width: 100%;
+        height: 12.5%;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        .text {
+          position: relative;
+
+          .underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px solid $black;
+            opacity: 0;
+            //transform: translate(0, 0);
+            transition: $transitionFast;
+          }
+        }
+      }
+
+      &:hover {
+        .item__title {
+          .text {
+            .underline {
+              opacity: 1;
+              transform: translate(0, 0);
             }
           }
         }

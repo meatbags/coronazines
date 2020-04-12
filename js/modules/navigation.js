@@ -23,12 +23,38 @@ class Navigation {
           }
         }
       });
-    })
+    });
+
+    // mobile menu
+    const button = document.querySelector('#mobile-menu-button');
+    const menu = document.querySelector('#mobile-menu');
+    button.addEventListener('click', () => {
+      if (menu.classList.contains('active')) {
+        button.classList.remove('active');
+        menu.classList.remove('active');
+      } else {
+        button.classList.add('active');
+        menu.classList.add('active');
+      }
+    });
+    menu.querySelectorAll('item').forEach(el => {
+      el.addEventListener('click', () => {
+        button.classList.remove('active');
+        menu.classList.remove('active');
+      });
+    });
 
     // view buttons
     document.querySelectorAll('[data-view]').forEach(el => {
       el.addEventListener('click', () => {
         this.openView(el.dataset.view);
+      });
+    });
+
+    // href
+    document.querySelectorAll('[data-href]').forEach(el => {
+      el.addEventListener('click', () => {
+        window.location = el.dataset.href;
       });
     });
 
@@ -38,6 +64,9 @@ class Navigation {
         this.openZine(el.dataset.zine);
       });
     });
+
+    // clipboard
+    this._clipboard = new ClipboardJS('#button-copy-url');
 
     // load zine from window
     const search = new URLSearchParams(window.location.search);

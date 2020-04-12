@@ -17,16 +17,21 @@
     .nav__pane {
       width: 50%;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
 
       .nav__item {
         @include padding(1, 0);
         cursor: pointer;
+        white-space: nowrap;
 
         &:hover {
           text-decoration: underline;
         }
+      }
+
+      &:first-child {
+        justify-content: flex-start;
       }
 
       &:last-child {

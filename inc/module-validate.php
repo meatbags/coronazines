@@ -26,9 +26,14 @@ class Validate {
     return count($data) > 0;
   }
 
+  public static function getSessionToken() {
+    $sessionToken = (new Session())->get('session_token');
+    return $sessionToken;
+  }
+
   public static function sessionToken() {
     $token = $_POST['session_token'] ?? NULL;
-    $valid = $token === NULL ? false : (new Session())->validateSessionToken($token);
-    return $valid;
+    $sessionToken = Validate::getSessionToken();
+    return !empty($token) && !empty($sessionToken) && $token === $sessionToken;
   }
 }

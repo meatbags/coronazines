@@ -5,7 +5,7 @@ function CreateElement(params) {
 
   Object.keys(params).forEach(key => {
     const type = typeof(params[key]);
-    if (type === 'object') {
+    if (type === 'object' && params[key] !== null) {
       // append child nodes recursively
       if (key === 'childNodes') {
         params[key].forEach(child => {
@@ -27,7 +27,7 @@ function CreateElement(params) {
           res.addEventListener(evt, params[key][evt]);
         });
       }
-
+      
       // set nested values
       else {
         Object.keys(params[key]).forEach(subkey => {

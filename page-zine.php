@@ -1,8 +1,9 @@
+<?php include('part-header.php'); ?>
+
 <?php
 include_once('inc/module-zine-handler.php');
 $ref = $_GET['z'] ?? NULL;
 $zine = $ref !== NULL ? ZineHandler::getZine($ref) : NULL;
-include('part-header.php');
 ?>
 
 <div class='wrapper'>
@@ -15,7 +16,6 @@ include('part-header.php');
   <div id='zine-password' class='active'>
     <form action='inc/action-get-zine.php' data-msg='Waiting' method='POST'>
       <div class='title'>PASSWORD REQUIRED</div>
-      <br />
       <div class='row'><label>Password</label><input type='text' name='password'></div>
       <input type='submit' value='SUBMIT'>
     </form>
@@ -29,4 +29,5 @@ include('part-header.php');
   <?php endif; ?>
 <?php endif; ?>
 
+<?php include('part-loading-screen.php'); ?>
 <?php include('part-footer.php'); ?>

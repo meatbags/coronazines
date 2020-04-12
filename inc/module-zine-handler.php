@@ -52,7 +52,8 @@ class ZineHandler {
       'zine_content' => filter_var($zine['zine_content'], FILTER_SANITIZE_URL),
       'zine_private' => htmlspecialchars($zine['zine_private']),
       'zine_protected' => htmlspecialchars($zine['zine_protected']),
-      'zine_updated_at' => htmlspecialchars($zine['zine_updated_at'])
+      'zine_updated_at' => htmlspecialchars($zine['zine_updated_at']),
+      'zine_published' => htmlspecialchars($zine['zine_published'])
     );
   }
 
@@ -68,12 +69,40 @@ class ZineHandler {
     return NULL;
   }
 
+  public static function createZine($title) {
+    $userId = (new Session())->get('user_id');
+    if ($userId === NULL) {
+      return NULL;
+    }
+    $req = new Request();
+    $ref = ZineHandler::getUniqueRef();
+    $time = time();
+    $sql = 'INSERT INTO zine (zine_title, zine_user_id, zine_ref,
+      zine_created_at, zine_updated_at) VALUES (?, ?, ?, ?, ?)';
+    $types = 'sisii';
+    $values = array($title, $userId, $ref, $time, $time);
+    $req->preparedQuery($sql, $types, $values);
+    return $ref;
+  }
+
   public static function saveZine($params) {
-    $title = $params['title'];
-    $content = $params['content'];
-    $ref = $params['ref'];
+    $ref = $params['zine_ref'];
+    if (!Validate::isZineOwner($ref)) {
+      return NULL;
+    }
+    $req = new Request();
     $timestamp = time();
-    $exists = ZineHandler::getZine($ref) !== NULL;
+    $sql = 'UPDATE zine SET zine_title=?, zine_author=?, zine_content=?,
+      zine_published=?, zine_private=?, zine_protected=?, zine_password=?,
+      zine_updated_at=? WHERE zine_ref=?';
+    $types = 'sssiiisis';
+    $values = array(
+      $params['zine_title'], $params['zine_author'], $params['zine_content'],
+      $params['zine_published'], $params['zine_private'], $params['zine_protected'], $params['zine_password'],
+      $timestamp, $ref
+    );
+    $req->preparedQuery($sql, $types, $values);
+    return true;
   }
 
   public static function getUniqueRef() {

@@ -3,6 +3,13 @@ form {
   flex-direction: column;
   width: 100%;
 
+  .title {
+    font-size: $fontSizeLarge;
+    font-weight: bold;
+    margin-bottom: $space;
+    text-transform: uppercase;
+  }
+
   .row {
     @include padding(0, 0.25);
     width: 100%;

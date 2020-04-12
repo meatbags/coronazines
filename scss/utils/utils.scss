@@ -11,3 +11,16 @@
 	margin-top: $y * $space;
 	margin-bottom: $y * $space;
 }
+
+.mobile-show {
+	display: none !important;
+	@media screen and (max-width: $mobile) {
+		display: flex !important;
+	}
+}
+
+.mobile-hide {
+	@media screen and (max-width: $mobile) {
+		display: none !important;
+	}
+}

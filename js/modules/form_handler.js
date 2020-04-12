@@ -32,20 +32,23 @@ class FormHandler {
     // submit async
     console.log('[FormHandler]', form.action);
     fetch(form.action, {method: 'POST', body: formData})
-      .then(res => res.json())
-      .then(json => { this.handle(json); });
+      .then(res => res.text())
+      .then(text => {
+        console.log(text);
+        const json = JSON.parse(text);
+        const alert = new Alert({msg: json.msg, domTarget: form});
+        this.handle(json);
+      });
   }
 
   handle(res) {
     // logs
     console.log(res);
-    if (res.res === 'SUCCESS' || res.res === 'ERROR') {
-      const alert = new Alert({msg: res.msg, domTarget: form});
-    } else if (res.res === 'REDIRECT') {
+    if (res.res === 'REDIRECT') {
       const url = res.data;
       window.location = url;
     }
-    
+
     // handle specific actions
     if (res.res === 'SUCCESS' && res.msg === 'action-get-zine' && res.data !== null) {
       this.ref.zineHandler.addZine(res.data);
@@ -56,10 +59,6 @@ class FormHandler {
         el.remove();
       });
     }
-  }
-
-  print(res) {
-    res.text().then(text => { console.log(text); });
   }
 }
 
