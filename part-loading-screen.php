@@ -7,6 +7,6 @@
       <div class='loading-screen__page'></div>
       <div class='loading-screen__page'></div>
     </div>
-    <div class='loading-screen__text'>Loading...</div>
+    <div id='loading-screen-text' class='loading-screen__text'>Loading...</div>
   </div>
 </div>

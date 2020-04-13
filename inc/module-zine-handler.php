@@ -61,7 +61,8 @@ class ZineHandler {
     if (!Validate::isZineOwner($ref)) {
       return NULL;
     }
-    $req = 'SELECT zine_password FROM zine WHERE zine_ref=?';
+    $req = new Request();
+    $sql = 'SELECT zine_password FROM zine WHERE zine_ref=?';
     $data = $req->preparedQuery($sql, 's', $ref);
     if (count($data) > 0) {
       return $data[0]['zine_password'];

@@ -109,13 +109,18 @@
     user-select: text;
   }
 
-  #button-copy-url {
+  .button {
     @include padding(1, 0.5);
+    margin-right: $space / 2;
     cursor: pointer;
     border: $border;
     display: flex;
     justify-content: center;
     white-space: nowrap;
+
+    &:active {
+      opacity: 0.5;
+    }
   }
 
   #create-zine-form {

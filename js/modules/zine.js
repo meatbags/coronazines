@@ -11,7 +11,6 @@ class Zine {
       zine_ref: params.data.zine_ref,
       zine_title: params.data.zine_title,
       zine_author: params.data.zine_author,
-      zine_description: params.data.zine_description,
       zine_content: params.data.zine_content,
     };
     this.domTarget = params.domTarget;
@@ -81,6 +80,25 @@ class Zine {
     } else {
       p.setBack(content);
     }
+  }
+
+  setContent(content) {
+    // get content
+    this.data.zine_content = content;
+    const sources = this.data.zine_content.split(';');
+    this.pageContent = sources.map(src => (src ? `<img src='${src}'>` : ''));
+
+    // clear
+    this.el.querySelector('.zine__page-list').innerHTML = '';
+    this.pages = [];
+
+    // add new pages
+    this.pageContent.forEach(content => {
+      this.addPage(content);
+    });
+
+    this.resize();
+    this.goToIndex(0);
   }
 
   resize() {

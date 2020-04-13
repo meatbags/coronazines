@@ -10,6 +10,10 @@ class LoadingScreen {
     this.hide();
   }
 
+  setMessage(msg) {
+    this.el.querySelector('#loading-screen-text').innerHTML = msg;
+  }
+
   show() {
     if (this.el && !this.active) {
       this.active = true;

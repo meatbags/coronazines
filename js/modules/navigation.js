@@ -65,9 +65,6 @@ class Navigation {
       });
     });
 
-    // clipboard
-    this._clipboard = new ClipboardJS('#button-copy-url');
-
     // load zine from window
     const search = new URLSearchParams(window.location.search);
     if (search.has('ref')) {

@@ -147,8 +147,8 @@ html, body {
   width: 100%; }
 
 body {
-  font-family: "Karla", sans-serif;
-  font-size: 15px;
+  font-family: "Playfair Display", serif;
+  font-size: 16px;
   line-height: 1;
   letter-spacing: 1;
   color: #2c2c2f;
@@ -300,16 +300,19 @@ a {
   .page--creator #button-copy-url-target {
     font-size: 12px;
     user-select: text; }
-  .page--creator #button-copy-url {
+  .page--creator .button {
     padding-left: 8px;
     padding-right: 8px;
     padding-top: 4px;
     padding-bottom: 4px;
+    margin-right: 4px;
     cursor: pointer;
     border: 1px solid #2c2c2f;
     display: flex;
     justify-content: center;
     white-space: nowrap; }
+    .page--creator .button:active {
+      opacity: 0.5; }
   .page--creator #create-zine-form {
     padding-left: 32px;
     padding-right: 32px;
@@ -384,7 +387,9 @@ a {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  position: relative;
+  }
 
 .nav {
   position: fixed;
