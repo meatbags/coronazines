@@ -1,5 +1,6 @@
 /** Zine creator */
 
+import Sortable from 'sortablejs';
 import Zine from './zine';
 import Alert from '../util/alert';
 import CreateElement from '../util/create_element';
@@ -41,6 +42,18 @@ class Creator {
       console.log(err);
     }
 
+    // init Sortable
+    this.sortable = new Sortable(this.el.pageList, {
+      draggable: '.page-list__page',
+      handle: '.page-list__page--handle',
+      ghostClass: 'page-list__page--ghost',
+      dragClass: 'page-list__page--drag',
+      animation: 150,
+      onEnd: () => {
+        this.updatePages();
+      }
+    });
+
     // clipboard
     this._clipboard = new ClipboardJS('#button-copy-url');
     document.querySelector('#button-copy-url').addEventListener('click', () => {
@@ -69,7 +82,7 @@ class Creator {
     };
 
     // render zine
-    this.render();
+    this.updatePages();
   }
 
   addPage(content) {
@@ -77,38 +90,59 @@ class Creator {
     const page = CreateElement({
       class: 'page-list__page',
       childNodes: [{
-        type: 'label',
-        innerHTML: 'Image URL'
+        class: 'label page-list__page--handle',
+        childNodes: [{
+          class: 'label--index',
+          type: 'span',
+        }, {
+          innerHTML: 'Image URL'
+        }]
       }, {
         type: 'input',
         attributes: {
           type: 'text',
         },
+      }, {
+        class: 'page-list__page--remove',
+        innerHTML: '&times;',
+        title: 'Delete page',
+        addEventListener: {
+          'click': () => {
+            page.remove();
+            this.updatePages();
+          },
+        }
       }]
     });
     const input = page.querySelector('input');
     input.value = value;
-    input.addEventListener('change', () => {
-      this.render();
-    });
+    input.addEventListener('change', () => { this.updatePages(); });
     this.el.pageList.appendChild(page);
-    this.render();
+    this.updatePages();
   }
 
-  render() {
+  updatePages() {
+    // set page indices
+    const pages = this.el.pageList.querySelectorAll('.page-list__page');
+    for (let i=0; i<pages.length; i++) {
+      pages[i].querySelector('.label--index').innerHTML = `${i + 1})`;
+    }
+
+    // get page content as string
     const content = this.getContentString();
+
+    // create zine
     if (!this.zine) {
       this.zine = new Zine({
         domTarget: document.querySelector('#zine-viewer'),
         data: {
-          zine_ref: '',
-          zine_title: '',
-          zine_author: '',
           zine_content: content,
         },
       });
+
+    // update zine
     } else {
-      this.zine.setContent(content);
+      this.zine.updateContent(content);
     }
   }
 

@@ -8,10 +8,10 @@ import ZinePage from './zine_page';
 class Zine {
   constructor(params) {
     this.data = {
-      zine_ref: params.data.zine_ref,
-      zine_title: params.data.zine_title,
-      zine_author: params.data.zine_author,
-      zine_content: params.data.zine_content,
+      zine_ref: params.data.zine_ref || null,
+      zine_title: params.data.zine_title || null,
+      zine_author: params.data.zine_author || null,
+      zine_content: params.data.zine_content || '',
     };
     this.domTarget = params.domTarget;
 
@@ -59,7 +59,7 @@ class Zine {
       : null;
 
     // log
-    console.log('[Zine] index:', this.index);
+    // console.log('[Zine] index:', this.index);
   }
 
   addPage(content) {
@@ -82,23 +82,41 @@ class Zine {
     }
   }
 
-  setContent(content) {
+  updateContent(content) {
     // get content
     this.data.zine_content = content;
     const sources = this.data.zine_content.split(';');
     this.pageContent = sources.map(src => (src ? `<img src='${src}'>` : ''));
 
-    // clear
-    this.el.querySelector('.zine__page-list').innerHTML = '';
-    this.pages = [];
+    // calc required pages, trim
+    const required = Math.ceil(this.pageContent.length / 2);
+    if (this.pages.length > required) {
+      for (let i=this.pages.length-1; i>=required; --i) {
+        this.pages[i].remove();
+        this.pages.splice(i, 1);
+      }
+    }
 
-    // add new pages
-    this.pageContent.forEach(content => {
-      this.addPage(content);
+    // update content
+    this.pageContent.forEach((content, i) => {
+      const index = Math.floor(i / 2);
+      if (index >= this.pages.length) {
+        this.addPage(content);
+      } else {
+        const front = i % 2 == 0;
+        const p = this.pages[index];
+        if (front) {
+          p.setFront(content);
+          p.setBack('');
+        } else {
+          p.setBack(content);
+        }
+      }
     });
 
+    // reset
     this.resize();
-    this.goToIndex(0);
+    this.goToIndex(this.index);
   }
 
   resize() {

@@ -141,6 +141,10 @@ class ZinePage {
     }
   }
 
+  remove() {
+    this.el.remove();
+  }
+
   render() {
     if (!this.el) {
       this.el = CreateElement({

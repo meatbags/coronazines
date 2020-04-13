@@ -4,7 +4,7 @@
   padding-top: $navHeight + $space * 2;
 
   .page--creator__left {
-    width: 520px;
+    width: 600px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -104,6 +104,57 @@
     height: 100%;
   }
 
+  .page-list {
+    @include padding(0.5, 0.25);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .page-list__page {
+      @include padding(0, 0.5);
+      @include margin(0, 0.25);
+      width: 100%;
+      background: $white;
+      display: flex;
+      align-items: center;
+      box-shadow: $boxShadow;
+
+      .label {
+        @include padding(0.5, 0);
+        width: 40%;
+        height: 100%;
+        display: flex;
+
+        span {
+          margin-right: $space/2;
+        }
+
+        &.page-list__page--handle {
+          cursor: grab;
+        }
+      }
+
+      .page-list__page--remove {
+        @include padding(0.5, 0);
+        @include margin(0.5, 0);
+        cursor: pointer;
+      }
+
+      input {
+        width: 60%;
+      }
+
+      &.page-list__page--drag {
+        background: $white;
+        background: red;
+      }
+
+      &.page-list__page--ghost {
+        opacity: 0;
+      }
+    }
+  }
+
   #button-copy-url-target {
     font-size: $fontSizeSmall;
     user-select: text;
@@ -121,6 +172,10 @@
     &:active {
       opacity: 0.5;
     }
+  }
+
+  #zine-viewer {
+    position: relative;
   }
 
   #create-zine-form {
