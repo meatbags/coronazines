@@ -7,7 +7,10 @@ include_once('module-session.php');
 class ZineHandler {
   public static function listPublicZines() {
     $req = new Request();
-    $sql = 'SELECT * FROM zine WHERE zine_published=1 AND (zine_private IS NULL OR zine_private != 1) AND (zine_deleted IS NULL OR zine_deleted != 1)';
+    $sql = 'SELECT * FROM zine WHERE zine_published=1 AND
+      (zine_private IS NULL OR zine_private != 1) AND
+      (zine_protected IS NULL OR zine_protected != 1) AND
+      (zine_deleted IS NULL OR zine_deleted != 1)';
     $data = $req->query($sql);
     return $data;
   }

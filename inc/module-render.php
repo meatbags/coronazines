@@ -11,8 +11,9 @@ class Render {
       <div class='item'>
         <div class='item__inner'>
           <div class='item__background' data-href='<?php echo $link; ?>'>
-            <?php echo !empty($p1) ? "<img src='" . $p1 . "'>" : "<div class='placeholder'></div>"; ?>
-            <div class='placeholder'></div>
+            <?php echo !empty($p1) ? "<img src='" . $p1 . "' alt='zine_image'>" : "<img src='img/blank.jpg'>"; ?>
+            <img src='img/blank.jpg'>
+            <!-- <div class='placeholder'></div> -->
           </div>
           <div class='item__title'>
             <div class='text' data-href='<?php echo $link; ?>'>

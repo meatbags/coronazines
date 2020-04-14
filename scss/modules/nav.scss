@@ -32,10 +32,22 @@
 
       &:first-child {
         justify-content: flex-start;
+
+        .nav__item {
+          &:first-child {
+            padding-left: 0;
+          }
+        }
       }
 
       &:last-child {
         justify-content: flex-end;
+
+        .nav__item {
+          &:last-child {
+            padding-left: 0;
+          }
+        }
       }
     }
   }

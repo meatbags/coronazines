@@ -13,7 +13,7 @@ if (!$name || !$password || !$confirm) {
 
 // check name
 if (!UserHandler::isValidName($name)) {
-  echo message('ERROR', 'Invalid name');
+  echo message('ERROR', 'Username taken');
   die();
 }
 
@@ -35,4 +35,4 @@ if (!UserHandler::login($name, $password)) {
   die();
 }
 
-echo message('REDIRECT', NULL, 'index.php');
+echo message('REDIRECT', NULL, 'page-login.php');

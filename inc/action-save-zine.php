@@ -24,7 +24,7 @@ $params = array(
   'zine_password' => $_POST['password'] ?? NULL,
   'zine_published' => $_POST['published'] ?? NULL,
   'zine_private' => $_POST['private'] ?? NULL,
-  'zine_protected' => $_POST['private'] ?? NULL,
+  'zine_protected' => $_POST['protected'] ?? NULL,
   'zine_password' => $_POST['password'] ?? NULL,
   'zine_content' => '',
 );

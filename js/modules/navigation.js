@@ -87,6 +87,7 @@ class Navigation {
   }
 
   resize() {
+    /*
     document.querySelectorAll('.placeholder').forEach(p => {
       const parent = p.parentNode.getBoundingClientRect();
       const child = {width: 1, height: 1.414};
@@ -94,6 +95,7 @@ class Navigation {
       p.style.width = `${rect.width}px`;
       p.style.height = `${rect.height}px`;
     });
+    */
   }
 }
 

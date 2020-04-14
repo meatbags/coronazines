@@ -7,12 +7,8 @@
     @include padding(4, 4);
 
     .title {
-      //font-weight: bold;
-      //text-transform: uppercase;
-    }
-
-    &:first-child {
-      border-right: 1px solid rgba($black, 0.75);
+      font-weight: bold;
+      text-transform: uppercase;
     }
   }
 
